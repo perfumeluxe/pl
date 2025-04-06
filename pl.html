@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Płatność - Perfume Luxe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="p.jpg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: url('bp.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .payment-container {
+            background: rgba(0, 0, 0, 0.75);
+            padding: 3rem;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+
+        .payment-container h1 {
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .account-info {
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+
+        .next-button {
+            background: #3a7bd5;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            margin-top: 2rem;
+        }
+
+        .next-button:hover {
+            background: #3561ad;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <h1>Dokonaj płatności</h1>
+        <div class="account-info">
+            <p><strong>Numer konta:</strong><br> 12 3456 7890 1234 5678 9012 3456</p>
+            <p><strong>Kwota do zapłaty:</strong><br> <span id="kwota"></span> PLN</p>
+        </div>
+        <p>W tytule przelewu wpisz swoje imię, nazwisko oraz email</p>
+        <button class="next-button" onclick="window.location.href='d.html'">Dalej</button>
+    </div>
+
+    <script>
+        // Funkcja obliczająca całkowitą cenę z koszyka
+        function calculateTotalPrice() {
+            let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+            let totalPrice = 0;
+            
+            cartItems.forEach(item => {
+                totalPrice += item.price * (item.quantity || 1);
+            });
+            
+            // Dodaj koszt wysyłki (20 PLN jak w Twoim skrypcie koszyka)
+            totalPrice += 20;
+            
+            return totalPrice;
+        }
+
+        // Ustaw kwotę do zapłaty na stronie
+        document.getElementById("kwota").textContent = calculateTotalPrice().toFixed(2);
+        
+        // Zapisz kwotę w localStorage dla ewentualnego późniejszego użycia
+        localStorage.setItem('totalPrice', calculateTotalPrice().toFixed(2));
+    </script>
+</body>
+</html>

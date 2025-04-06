@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Dziękujemy - Perfume Luxe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="p.jpg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: url('bp.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .thank-you-container {
+            background: rgba(0, 0, 0, 0.75);
+            padding: 3rem;
+            border-radius: 12px;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+
+        .thank-you-container h1 {
+            margin-bottom: 1.5rem;
+            font-size: 2.2rem;
+            color: #3a7bd5;
+        }
+
+        .thank-you-container p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .order-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .order-number {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #4CAF50;
+            margin: 1rem 0;
+        }
+
+        .back-button {
+            background: #3a7bd5;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .back-button:hover {
+            background: #3561ad;
+            transform: translateY(-2px);
+        }
+
+        .fa-check-circle {
+            color: #4CAF50;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="thank-you-container">
+        <i class="fas fa-check-circle"></i>
+        <h1>Dziękujemy za zakupy!</h1>
+        
+        <div class="order-info">
+            <p>Twoje zamówienie zostało pomyślnie złożone.</p>
+            <div class="order-number" id="order-number"></div>
+            <p>Przesyłka zostanie wysłana w ciągu <strong>48 godzin</strong>.</p>
+        </div>
+
+        <p>W razie pytań zapraszamy do <a href="k.html" style="color: #3a7bd5;">kontaktu</a>.</p>
+        
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Powrót do strony głównej
+        </a>
+    </div>
+
+    <script>
+        // Funkcja generująca numer zamówienia
+        function generateOrderNumber() {
+            const prefix = "PLX-";
+            const randomNum = Math.floor(Math.random() * 90000) + 10000; // 5-cyfrowy numer
+            const date = new Date();
+            const day = date.getDate().toString().padStart(2, '0');
+            const month = (date.getMonth() + 1).toString().padStart(2, '0');
+            return `${prefix}${day}${month}-${randomNum}`;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+    // Odczytaj numer zamówienia z localStorage
+    const orderNumber = localStorage.getItem('orderNumber');
+
+    // Jeśli numer zamówienia istnieje, wyświetl go
+    if (orderNumber) {
+        document.getElementById('order-number').textContent = `Numer zamówienia: ${orderNumber}`;
+    }
+
+    // Logowanie danych zamówienia (dla debugowania)
+    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    console.log('Numer zamówienia:', orderNumber);
+    console.log('Zamówione produkty:', cartItems);
+
+    // Możesz wyczyścić koszyk po złożeniu zamówienia
+    // localStorage.removeItem('cart');
+});
+    </script>
+</body>
+</html>

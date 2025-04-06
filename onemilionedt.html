@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VALENTINO UOMO BORN IN ROMA CORAL FANTASY | Perfume Luxe</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="zdjecia/p.jpg">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-image: url('bp.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+            margin: 0;
+            padding: 0;
+            min-height: 100v
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.3); /* Dostosuj przezroczystość (0.8-0.9) */
+            z-index: -1;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        header {
+            background: linear-gradient(135deg,#6a9be6 0%, #3561ad 50%, #6a9be6 100%);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transform: translateY(-20px);
+            opacity: 0;
+            animation: slideDown 0.6s ease-out 0.3s forwards;
+        }
+        
+        @keyframes slideDown {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 0 2rem;
+            padding-top: 1rem;
+            transform: translateY(-20px);
+            opacity: 0;
+            animation: slideDown 0.6s ease-out 0.3s forwards;
+        }
+        
+        .nav-link {
+            color: #3a7bd5;
+            text-decoration: none;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: #2c65c4;
+            transform: translateX(-3px);
+        }
+        
+        .product-container {
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+            padding: 0 2rem 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease-out 0.6s forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .product-header {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .product-image-container {
+            background: #f1f1f1;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transform: scale(0.9);
+            animation: zoomIn 0.8s ease-out 0.8s forwards;
+            flex: 1.5; 
+            padding: 3rem; 
+        }
+
+        
+        
+        @keyframes zoomIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .product-image {
+            width: 100%; 
+            max-height: none; 
+            object-fit: contain;
+            border-radius: 8px;
+            transform: scale(1.35);
+        }
+        
+        .product-image:hover {
+            transform: scale(1.5);
+        }
+        
+        .product-info {
+            flex: 1;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out 1.0s forwards;
+        }
+        
+        .product-title {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-brand {
+            color: #8b9b9c;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        
+        .product-description {
+            margin-bottom: 2rem;
+            color: #000000;
+        }
+        
+        .size-options {
+            margin: 2rem 0;
+        }
+        
+        .size-options h3 {
+            margin-bottom: 1rem;
+            color: #1f41d8;
+        }
+        
+        .size-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1rem;
+        }
+        
+        .size-btn {
+            padding: 0.8rem;
+            background: #f1f1f1;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        
+        .size-btn:nth-child(1) { animation: fadeInUp 0.4s ease-out 1.2s forwards; }
+        .size-btn:nth-child(2) { animation: fadeInUp 0.4s ease-out 1.3s forwards; }
+        .size-btn:nth-child(3) { animation: fadeInUp 0.4s ease-out 1.4s forwards; }
+        .size-btn:nth-child(4) { animation: fadeInUp 0.4s ease-out 1.5s forwards; }
+        .size-btn:nth-child(5) { animation: fadeInUp 0.4s ease-out 1.6s forwards; }
+        .size-btn:nth-child(6) { animation: fadeInUp 0.4s ease-out 1.7s forwards; }
+
+        .size-btn:hover, .size-btn.active {
+            background: #dd1abd;
+            color: white;
+            border-color: #000000;
+            transform: translateY(-3px);
+        }
+        
+        .price-container {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            opacity: 0;
+            animation: fadeIn 0.6s ease-out 1.8s forwards;
+        }
+        
+        .price {
+            font-size: 1.8rem;
+            color: #1f41d8;
+            font-weight: bold;
+        }
+        
+        .selected-size {
+            margin-top: 0.5rem;
+            color: #7f8c8d;
+        }
+        
+        .add-to-cart {
+            padding: 1rem 2rem;
+            background: #ff1900;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 1rem;
+            opacity: 0;
+            animation: fadeIn 0.6s ease-out 2.0s forwards;
+        }
+        
+        .add-to-cart:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .product-details {
+            margin-top: 3rem;
+            opacity: 0;
+            animation: fadeIn 0.6s ease-out 2.2s forwards;
+        }
+        
+        .details-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #eee;
+            text-align: center;
+            position: relative;
+        }
+
+        .details-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+        
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+        
+        .details-table tr {
+            opacity: 0;
+            transform: translateX(10px);
+        }
+        
+        .details-table tr:nth-child(1) { animation: fadeInRight 0.4s ease-out 2.4s forwards; }
+        .details-table tr:nth-child(2) { animation: fadeInRight 0.4s ease-out 2.5s forwards; }
+        .details-table tr:nth-child(3) { animation: fadeInRight 0.4s ease-out 2.6s forwards; }
+        .details-table tr:nth-child(4) { animation: fadeInRight 0.4s ease-out 2.7s forwards; }
+        .details-table tr:nth-child(5) { animation: fadeInRight 0.4s ease-out 2.8s forwards; }
+        .details-table tr:nth-child(6) { animation: fadeInRight 0.4s ease-out 2.9s forwards; }
+        
+        @keyframes fadeInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .details-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+        
+        .details-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .details-label {
+            font-weight: bold;
+            color: #2c3e50;
+            width: 40%;
+        }
+        
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: none;
+            z-index: 1000;
+            animation: slideIn 0.5s, fadeOut 0.5s 2.5s forwards;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+        
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        
+        .fragrance-characteristics {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.05);
+            opacity: 0;
+            animation: fadeIn 0.6s ease-out 3.4s forwards;
+        }
+        
+        .fragrance-characteristics table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+        }
+        
+        .fragrance-characteristics tr:not(:last-child) td {
+            border-bottom: 1px solid #eee;
+        }
+        
+        .fragrance-characteristics td {
+            padding: 12px 15px;
+            vertical-align: middle;
+        }
+        
+        .characteristic-name {
+            font-weight: bold;
+            color: #2c3e50;
+            width: 30%;
+        }
+        
+        .characteristic-bar {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .bar-container {
+            width: 80%;
+            background: #f1f1f1;
+            height: 10px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        
+        .bar {
+            height: 100%;
+            border-radius: 5px;
+        }
+        
+        .bar-value {
+            font-weight: bold;
+            min-width: 40px;
+            text-align: right;
+        }
+        
+        .product-features {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.05);
+            opacity: 0;
+            animation: fadeIn 0.6s ease-out 3.0s forwards;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .feature-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid #e0e0e0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background: white;
+            border-color: transparent;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #2a5298;
+            margin-bottom: 1rem;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(42, 82, 152, 0.1);
+            border-radius: 50%;
+        }
+        
+        .feature-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+            font-size: 1.2rem;
+        }
+        
+        .feature-desc {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .back-button:hover {
+            background-color: #e0e0e0;
+        }
+        
+        @media (max-width: 1024px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .product-header {
+                flex-direction: column;
+            }
+            
+            .size-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-image-container {
+                margin-bottom: 2rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .details-title {
+                font-size: 1.5rem;
+            }
+            
+            .fragrance-characteristics table {
+                display: block;
+                overflow-x: auto;
+            }
+            .product-container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+            body::before {
+                background: rgba(255, 255, 255, 0.92); /* Mniej przezroczyste na mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="notification" class="notification"></div>
+    
+    <header>
+        <h1><i class="fas fa-spray-can"></i> Perfume Luxe</h1>
+    </header>
+    
+    <div class="navigation">
+        <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i> Powrót do sklepu</a>
+    </div>
+
+    <div class="product-container">
+        <div class="product-header">
+            <div class="product-image-container">
+                <img src="zdjecia/valentinouomoborninromacoralfantasy.jpg" alt="VALENTINO UOMO BORN IN ROMA CORAL FANTASY" class="product-image">
+            </div>
+            <div class="product-info">
+                <h1 class="product-title">VALENTINO UOMO BORN IN ROMA CORAL FANTASY</h1>
+                <p class="product-brand">VALENTINO</p>
+                <p class="product-description">
+                    Valentino Uomo Born in Roma to elegancki, zmysłowy zapach dla mężczyzn, który łączy drzewno-orientalne nuty z świeżymi akcentami cytrusów i ziołami. Początkowo wyczuwalne są bergamotka i zielona mandarynka, które ustępują miejsca lawendzie i szałwii, a na koniec zapach rozwija się w ciepłe, drzewne nuty wanilii, fasoli tonka i piżma. Idealny na wieczorne wyjścia i specjalne okazje.
+                </p>
+                
+                <div class="size-options">
+                    <h3>Wybierz pojemność:</h3>
+                    <div class="size-grid">
+                        <button class="size-btn" data-price="150" data-size="20 ml">20 ml - 150 PLN</button>
+                        <button class="size-btn" data-price="125" data-size="15 ml">15 ml - 125 PLN</button>
+                        <button class="size-btn" data-price="100" data-size="10 ml">10 ml - 100 PLN</button>
+                        <button class="size-btn" data-price="75" data-size="5 ml">5 ml - 75 PLN</button>
+                        <button class="size-btn" data-price="40" data-size="3 ml">3 ml - 40 PLN</button>
+                        <button class="size-btn" data-price="30" data-size="2 ml">2 ml - 30 PLN</button>
+                    </div>
+                </div>
+                
+                <button class="add-to-cart">
+                    <i class="fas fa-cart-plus"></i> Dodaj do koszyka
+                </button>
+            </div>
+        </div>
+        
+        <div class="product-details">
+            <h2 class="details-title">Szczegóły produktu</h2>
+            <table class="details-table">
+                <tr>
+                    <td class="details-label">Rodzina zapachowa:</td>
+                    <td>Drzewno-orientalna</td>
+                </tr>
+                <tr>
+                    <td class="details-label">Nuty głowy:</td>
+                    <td>Bergamotka, Zioła, Zielona mandarynka</td>
+                </tr>
+                <tr>
+                    <td class="details-label">Nuty serca:</td>
+                    <td>Lawenda, Szałwia, Wzbogacona nutą drewna cedrowego</td>
+                </tr>
+                <tr>
+                    <td class="details-label">Nuty bazy:</td>
+                    <td>Wanilia, Fasola tonka, Piżmo</td>
+                </tr>
+                <tr>
+                    <td class="details-label">Typ:</td>
+                    <td>Eau de Parfum</td>
+                </tr>
+            </table>
+            <div class="fragrance-characteristics" style="margin-top: 3rem; opacity: 0; animation: fadeIn 0.6s ease-out 3.4s forwards;">
+                <h2 class="details-title">Charakterystyka zapachu</h2>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 1.5rem;">
+                    <tr>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #eee; width: 30%; font-weight: bold;">Słodycz</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #eee; width: 70%;">
+                            <div style="display: flex; align-items: center;">
+                                <div style="width: 80%; background: #f1f1f1; height: 10px; border-radius: 5px;">
+                                    <div style="width: 80%; height: 100%; background: #e74c3c; border-radius: 5px;"></div>
+                                </div>
+                                <span style="margin-left: 10px; color: #e74c3c; font-weight: bold;">8/10</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #eee; font-weight: bold;">Gorycz</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #eee;">
+                            <div style="display: flex; align-items: center;">
+                                <div style="width: 80%; background: #f1f1f1; height: 10px; border-radius: 5px;">
+                                    <div style="width: 30%; height: 100%; background: #3498db; border-radius: 5px;"></div>
+                                </div>
+                                <span style="margin-left: 10px; color: #3498db; font-weight: bold;">3/10</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #eee; font-weight: bold;">Świeżość</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #eee;">
+                            <div style="display: flex; align-items: center;">
+                                <div style="width: 80%; background: #f1f1f1; height: 10px; border-radius: 5px;">
+                                    <div style="width: 60%; height: 100%; background: #2ecc71; border-radius: 5px;"></div>
+                                </div>
+                                <span style="margin-left: 10px; color: #2ecc71; font-weight: bold;">6/10</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #eee; font-weight: bold;">Intensywność</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #eee;">
+                            <div style="display: flex; align-items: center;">
+                                <div style="width: 80%; background: #f1f1f1; height: 10px; border-radius: 5px;">
+                                    <div style="width: 80%; height: 100%; background: #9b59b6; border-radius: 5px;"></div>
+                                </div>
+                                <span style="margin-left: 10px; color: #9b59b6; font-weight: bold;">8/10</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px 15px; font-weight: bold;">Trwałość</td>
+                        <td style="padding: 12px 15px;">
+                            <div style="display: flex; align-items: center;">
+                                <div style="width: 80%; background: #f1f1f1; height: 10px; border-radius: 5px;">
+                                    <div style="width: 80%; height: 100%; background: #f39c12; border-radius: 5px;"></div>
+                                </div>
+                                <span style="margin-left: 10px; color: #f39c12; font-weight: bold;">8/10</span>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="product-features">
+                <h2 class="details-title">Dlaczego pokochasz ten zapach?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3 class="feature-title">Długotrwałość</h3>
+                        <p class="feature-desc">Intensywna kompozycja utrzymuje się na skórze nawet do 8 godzin</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h3 class="feature-title">Uniwersalność</h3>
+                        <p class="feature-desc">Idealny na jesienne/zimowe dni/wieczory</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-magnet"></i>
+                        </div>
+                        <h3 class="feature-title">Magnetyzm zapachu</h3>
+                        <p class="feature-desc">Działa jak niewidzialny magnes - ludzie będą się odwracać za Tobą</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Obsługa wyboru pojemności
+        const sizeButtons = document.querySelectorAll('.size-btn');
+        const priceElement = document.querySelector('.price');
+        const sizeElement = document.querySelector('.selected-size');
+        
+        sizeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                sizeButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                const price = button.getAttribute('data-price');
+                const size = button.getAttribute('data-size');
+                priceElement.textContent = price + ' PLN';
+                sizeElement.textContent = 'Pojemność: ' + size;
+            });
+        });
+        
+        // Funkcja do pokazywania powiadomień
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+            notification.style.display = 'flex';
+            notification.style.alignItems = 'center';
+            notification.style.gap = '10px';
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+        }
+        
+        // Obsługa dodawania do koszyka
+        document.querySelector('.add-to-cart').addEventListener('click', () => {
+            const activeButton = document.querySelector('.size-btn.active');
+            const price = activeButton.getAttribute('data-price');
+            const size = activeButton.getAttribute('data-size');
+            const productName = 'VALENTINO UOMO BORN IN ROMA CORAL FANTASY';
+            
+            // Pobierz aktualny koszyk z localStorage
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            // Sprawdź czy produkt już jest w koszyku
+            const existingItemIndex = cart.findIndex(item => 
+                item.name === productName && item.size === size
+            );
+            
+            if (existingItemIndex !== -1) {
+                cart[existingItemIndex].quantity += 1;
+            } else {
+                cart.push({
+                    id: Date.now(), // Unikalne ID
+                    name: productName,
+                    price: parseFloat(price),
+                    size: size,
+                    quantity: 1,
+                    img: 'zdjecia/valentinouomoborninromacoralfantasy.jpg' // Ścieżka do obrazka
+                });
+            }
+            
+            // Zapisz koszyk w localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Pokaż powiadomienie
+            showNotification(`${productName} (${size}) dodany do koszyka!`);
+            
+            // Aktualizuj licznik koszyka jeśli funkcja istnieje
+            if (typeof updateCartCounter === 'function') {
+                updateCartCounter();
+            }
+        });
+    </script>
+</body>
+</html>
