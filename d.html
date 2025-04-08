@@ -5,6 +5,7 @@
     <title>Dziękujemy - Perfume Luxe</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="p.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -22,6 +23,7 @@
             align-items: center;
             height: 100vh;
             text-align: center;
+            padding: 1rem;
         }
 
         .thank-you-container {
@@ -29,7 +31,7 @@
             padding: 3rem;
             border-radius: 12px;
             max-width: 600px;
-            width: 90%;
+            width: 100%;
             box-shadow: 0 4px 12px rgba(0,0,0,0.5);
         }
 
@@ -83,8 +85,35 @@
             font-size: 3rem;
             margin-bottom: 1rem;
         }
+
+        @media (max-width: 600px) {
+            .thank-you-container {
+                padding: 2rem 1rem;
+            }
+
+            .thank-you-container h1 {
+                font-size: 1.6rem;
+            }
+
+            .thank-you-container p {
+                font-size: 1rem;
+            }
+
+            .order-number {
+                font-size: 1.1rem;
+            }
+
+            .back-button {
+                width: 100%;
+                font-size: 1rem;
+                padding: 0.9rem;
+            }
+
+            .fa-check-circle {
+                font-size: 2.5rem;
+            }
+        }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
     <div class="thank-you-container">
@@ -105,33 +134,17 @@
     </div>
 
     <script>
-        // Funkcja generująca numer zamówienia
-        function generateOrderNumber() {
-            const prefix = "PLX-";
-            const randomNum = Math.floor(Math.random() * 90000) + 10000; // 5-cyfrowy numer
-            const date = new Date();
-            const day = date.getDate().toString().padStart(2, '0');
-            const month = (date.getMonth() + 1).toString().padStart(2, '0');
-            return `${prefix}${day}${month}-${randomNum}`;
-        }
+        // Wyświetlenie numeru zamówienia z localStorage
+        document.addEventListener('DOMContentLoaded', function () {
+            const orderNumber = localStorage.getItem('orderNumber');
+            if (orderNumber) {
+                document.getElementById('order-number').textContent = `Numer zamówienia: ${orderNumber}`;
+            }
 
-        document.addEventListener('DOMContentLoaded', function() {
-    // Odczytaj numer zamówienia z localStorage
-    const orderNumber = localStorage.getItem('orderNumber');
-
-    // Jeśli numer zamówienia istnieje, wyświetl go
-    if (orderNumber) {
-        document.getElementById('order-number').textContent = `Numer zamówienia: ${orderNumber}`;
-    }
-
-    // Logowanie danych zamówienia (dla debugowania)
-    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-    console.log('Numer zamówienia:', orderNumber);
-    console.log('Zamówione produkty:', cartItems);
-
-    // Możesz wyczyścić koszyk po złożeniu zamówienia
-    // localStorage.removeItem('cart');
-});
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            console.log('Numer zamówienia:', orderNumber);
+            console.log('Zamówione produkty:', cartItems);
+        });
     </script>
 </body>
 </html>
