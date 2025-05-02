@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="p.jpg">
+    <title>Formularz zamówienia - Perfume Luxe</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            background: url('bp.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            background: linear-gradient(135deg,#6a9be6 0%, #3561ad 50%, #6a9be6 100%);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            display: flex;
+            min-height: calc(100vh - 80px);
+            flex-direction: column;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .page-title {
+            color: #343a40;
+            margin-bottom: 1.5rem;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #dee2e6;
+            text-align: center;
+        }
+
+        .form-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-section {
+            flex: 1;
+        }
+
+        .cart-section {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #495057;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus {
+            border-color: #3a7bd5;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(58, 123, 213, 0.2);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: #3a7bd5;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            background: #2a6bc5;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .cart-items {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            display: table;
+        }
+
+        .cart-items th {
+            text-align: left;
+            padding: 12px 10px;
+            background: #e9ecef;
+            border-bottom: 2px solid #dee2e6;
+            color: #495057;
+            font-weight: 600;
+        }
+
+        .cart-items td {
+            padding: 15px 10px;
+            border-bottom: 1px solid #dee2e6;
+            vertical-align: middle;
+        }
+
+        .cart-item-img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        .cart-summary {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #dee2e6;
+            text-align: right;
+        }
+
+        .total-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #212529;
+        }
+
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: none;
+            z-index: 1000;
+            animation: slideIn 0.5s, fadeOut 0.5s 2.5s forwards;
+            font-weight: 500;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        /* Dark Mode styles */
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .main-content {
+            background: rgba(30, 30, 30, 0.9);
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .page-title {
+            color: #f5f5f5;
+            border-bottom-color: #444;
+        }
+
+        body.dark-mode label {
+            color: #e0e0e0;
+        }
+
+        body.dark-mode input[type="text"],
+        body.dark-mode input[type="email"] {
+            background: #2d2d2d;
+            border-color: #444;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode input[type="text"]:focus,
+        body.dark-mode input[type="email"]:focus {
+            border-color: #3a7bd5;
+            box-shadow: 0 0 0 3px rgba(58, 123, 213, 0.3);
+        }
+
+        body.dark-mode .cart-section {
+            background: #252525;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        body.dark-mode .cart-items th {
+            background: #333;
+            color: #f5f5f5;
+            border-bottom-color: #444;
+        }
+
+        body.dark-mode .cart-items td {
+            border-bottom-color: #444;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .cart-summary {
+            border-top-color: #444;
+        }
+
+        body.dark-mode .total-price {
+            color: #3a7bd5;
+        }
+
+        /* Responsywność */
+        @media (max-width: 768px) {
+            .form-container {
+                flex-direction: column;
+            }
+            
+            .form-section, .cart-section {
+                width: 100%;
+            }
+        }
+        /* Tryb ciemny - koszyk */
+        body.dark-mode #cart {
+            background: #1e1e1e;
+            color: #e0e0e0;
+            border-color: #333;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark-mode #cart .cart-items th {
+            background: #252525;
+            color: #f5f5f5;
+            border-bottom-color: #333;
+        }
+
+        body.dark-mode #cart .cart-items td {
+            border-bottom-color: #333;
+        }
+
+        body.dark-mode #cart .total-price {
+            color: #3a7bd5 !important;
+        }
+
+        body.dark-mode #cart .cart-items img.cart-item-img {
+            filter: brightness(0.85) contrast(1.1);
+        }
+
+        body.dark-mode #cart .cart-items tr:hover {
+            background-color: #2d2d2d;
+        }
+
+        body.dark-mode #cart .cart-buttons .cart-action-btn {
+            background: #3a7bd5;
+            color: white;
+        }
+
+        body.dark-mode #cart .cart-buttons .cart-action-btn:hover {
+            background: #2a6bc5;
+        }
+        .quantity-control {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            background: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .quantity-btn:hover {
+            background: #5a6268;
+        }
+
+        .minus-btn {
+            margin-right: 5px;
+        }
+
+        .plus-btn {
+            margin-left: 5px;
+        }
+
+        .quantity-input {
+            width: 50px;
+            text-align: center;
+            margin: 0 5px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            padding: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .quantity-input:focus {
+            border-color: #3a7bd5;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(58, 123, 213, 0.2);
+        }
+        .dark-mode-btn {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+
+        body.dark-mode .dark-mode-btn {
+            color: #ffc107; /* Żółty kolor dla ikony słońca */
+        }
+        .custom-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            text-align: center;
+        }
+
+        #modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .success-modal {
+            position: relative;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            z-index: 1001; /* Powyżej blokady */
+        }
+
+        .modal-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .success-icon {
+            font-size: 3rem;
+            color: #28a745;
+        }
+
+        .success-message {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .success-btn {
+            padding: 10px 20px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .success-btn:hover {
+            background: #218838;
+        }
+        #countdown-message {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                flex-direction: column;
+            }
+        
+            .form-section, .cart-section {
+                width: 100%;
+            }
+        
+            input[type="text"], input[type="email"] {
+                font-size: 14px;
+                padding: 10px;
+            }
+        
+            .submit-btn {
+                font-size: 14px;
+                padding: 10px;
+            }
+        
+            .cart-items th, .cart-items td {
+                font-size: 12px;
+                padding: 8px;
+            }
+        
+            .notification {
+                font-size: 12px;
+                padding: 10px;
+            }
+        }
+        @media (max-width: 768px) {
+            .cart-items {
+                display: block;
+            }
+        
+            .cart-items tr {
+                display: block;
+                margin-bottom: 10px;
+                padding: 10px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+            }
+        
+            .cart-items th,
+            .cart-items td {
+                display: block;
+                text-align: right;
+            }
+        
+            .cart-items th::before,
+            .cart-items td::before {
+                content: attr(data-label);
+                float: left;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+</head>
+<body>
+    <header>
+        <div class="header-overlay"></div>
+        <h1><i class="fas fa-spray-can"></i> Perfume Luxe</h1>
+        <button id="dark-mode-toggle" class="dark-mode-btn">
+            <i class="fas fa-moon"></i>
+        </button>
+    </header>
+    
+    <div class="container">
+        <div class="main-content">
+            <h2 class="page-title">Dane do zamówienia</h2>
+            
+            <div class="form-container">
+                <div class="form-section">
+                    <form id="orderForm">
+                        <div class="form-group">
+                            <label for="name">Imię i nazwisko: </label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email: </label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="city">Miasto: </label>
+                            <input type="text" id="city" name="city" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="postalCode">Kod pocztowy: </label>
+                            <input type="text" id="postalCode" name="postalCode" required pattern="[0-9]{2}-[0-9]{3}" placeholder="np. 00-000">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="street">Ulica: </label>
+                            <input type="text" id="street" name="street" required>
+                        </div>
+                        
+                        <div class="form-group">
+                        <label for="houseNumber">Numer domu/lokalu: </label>
+                        <input type="text" id="houseNumber" name="houseNumber" required> 
+                        </div>
+                        <button type="submit" class="submit-btn" id="submitBtn" disabled>
+                            <i class="fas fa-paper-plane"></i> Złóż zamówienie
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="cart-section">
+                    <h3><i class="fas fa-shopping-cart"></i> Twój koszyk</h3>
+                    <br>
+                    <div id="cart-content">
+                        <!-- Zawartość koszyka będzie wstawiona dynamicznie -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification" class="notification">
+        <i class="fas fa-check-circle"></i> Zamówienie zostało złożone!
+    </div>
+
+    <!-- Dodaj skrypt EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+        emailjs.init('2yBzGVW-Ha2oy8wej');
+
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function showNotification(message) {
+            const notification = document.getElementById("notification");
+            notification.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+            notification.style.display = "flex";
+            setTimeout(() => {
+                notification.style.display = "none";
+            }, 3000);
+        }
+
+        function updateCartCounter() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const counter = document.getElementById('cart-counter');
+            if (totalItems > 0) {
+                counter.textContent = totalItems;
+                counter.style.display = 'inline-block';
+            } else {
+                counter.style.display = 'none';
+            }
+        }
+
+        function generateOrderNumber() {
+            const today = new Date();
+            const day = String(today.getDate()).padStart(2, '0');
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const hours = String(today.getHours()).padStart(2, '0');
+            const minutes = String(today.getMinutes()).padStart(2, '0');
+            const randomDigits = Math.floor(10000 + Math.random() * 90000);
+            return `PL${day}${month}-${hours}${minutes}-${randomDigits}`;
+        }
+
+        function displayCart() {
+            const cartContent = document.getElementById('cart-content');
+            if (cart.length === 0) {
+                cartContent.innerHTML = '<p>Koszyk jest pusty.</p>';
+                return;
+            }
+            let total = 0;
+            let html = `
+                <table class="cart-items">
+                    <thead>
+                        <tr>
+                            <th>Zdjęcie</th>
+                            <th>Produkt</th>
+                            <th>Pojemność</th>
+                            <th>Cena</th>
+                            <th>Ilość</th>
+                            <th>Suma</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                html += `
+                    <tr>
+                        <td><img src="${item.img}" alt="${item.name}" class="cart-item-img" onclick="window.open('${item.link}', '_blank')"></td>
+                        <td style="font-weight: 500;">${item.name}</td>
+                        <td>${item.size}</td>
+                        <td>${item.price} PLN</td>
+                        <td>
+                            <div class="quantity-control">
+                                <button class="quantity-btn minus-btn" onclick="updateQuantity(${index}, -1)">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <input type="number" class="quantity-input" value="${item.quantity}" min="1"
+                                       onchange="updateQuantityInput(${index}, this.value)">
+                                <button class="quantity-btn plus-btn" onclick="updateQuantity(${index}, 1)">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </td>
+                        <td style="font-weight: 600;">${itemTotal.toFixed(2)} PLN</td>
+                    </tr>
+                `;
+            });
+            html += `
+                    </tbody>
+                </table>
+                <div class="cart-summary">
+                    <p style="font-size: 1.2rem; font-weight: bold;">Koszt wysyłki: 20 PLN</p>
+                    <p style="font-size: 1.4rem; font-weight: bold;">Suma całkowita: 
+                        <span id="total-price" class="total-price">${(total + 20).toFixed(2)}</span> PLN</p>
+                </div>
+            `;
+            cartContent.innerHTML = html;
+        }
+
+        // Aktualizacja ilości produktu
+        function updateQuantity(index, change) {
+            const newQuantity = cart[index].quantity + change;
+            if (newQuantity < 1) {
+                removeFromCart(index);
+                return;
+            }
+            cart[index].quantity = newQuantity;
+            localStorage.setItem('cart', JSON.stringify(cart));
+            displayCart();
+            updateCartCounter();
+        }
+
+        // Aktualizacja ilości produktu przez input
+        function updateQuantityInput(index, value) {
+            const newQuantity = parseInt(value);
+            if (isNaN(newQuantity) || newQuantity < 1) {
+                displayCart();
+                return;
+            }
+            cart[index].quantity = newQuantity;
+            localStorage.setItem('cart', JSON.stringify(cart));
+            displayCart();
+            updateCartCounter();
+        }
+
+        // Usunięcie produktu z koszyka
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            displayCart();
+            updateCartCounter();
+            showNotification("Produkt został usunięty z koszyka.");
+        }
+
+        setInterval(() => {
+            cart = JSON.parse(localStorage.getItem('cart')) || [];
+            displayCart();
+            updateCartCounter();
+        }, 1000);
+
+        // Funkcja walidacji adresu e-mail
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(String(email).toLowerCase());
+        }
+
+        // Funkcja walidacji formularza
+        function validateForm() {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const city = document.getElementById('city').value.trim();
+            const postalCode = document.getElementById('postalCode').value.trim();
+            const street = document.getElementById('street').value.trim();
+            const houseNumber = document.getElementById('houseNumber').value.trim();
+
+            // Sprawdź, czy wszystkie pola są wypełnione i czy e-mail oraz kod pocztowy są poprawne
+            const isFormValid =
+                name !== "" &&
+                email !== "" &&
+                validateEmail(email) &&
+                city !== "" &&
+                postalCode !== "" &&
+                /^[0-9]{2}-?[0-9]{3}$/.test(postalCode) && // Umożliwia wpisanie kodu z lub bez myślnika
+                street !== "" &&
+                houseNumber !== "";
+
+            // Aktywuj lub dezaktywuj przycisk
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = !isFormValid;
+        }
+
+            document.getElementById('name').addEventListener('input', validateForm);
+            document.getElementById('email').addEventListener('input', validateForm);
+            document.getElementById('city').addEventListener('input', validateForm);
+            document.getElementById('postalCode').addEventListener('input', validateForm);
+            document.getElementById('street').addEventListener('input', validateForm);
+            document.getElementById('houseNumber').addEventListener('input', validateForm);
+
+            validateForm();
+
+        // Obsługa formularza
+        document.getElementById('orderForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            // Sprawdź, czy koszyk nie jest pusty
+            if (cart.length === 0) {
+                alert("Nie można złożyć pustego zamówienia. Napewno coś Ci się spodoba!");
+                return;
+            }
+            // Pobierz wartości z formularza
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim(); // E-mail kupującego
+            const city = document.getElementById('city').value.trim();
+            const postalCode = document.getElementById('postalCode').value.trim();
+            const street = document.getElementById('street').value.trim();
+            const houseNumber = document.getElementById('houseNumber').value.trim();
+            // Generuj numer zamówienia
+            const orderNumber = generateOrderNumber();
+            // Oblicz całkowitą kwotę zamówienia
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            // Przygotuj dane do wysłania
+            const formData = {
+                name: name,
+                email: email,
+                city: city,
+                postalCode: postalCode,
+                street: street,
+                houseNumber: houseNumber,
+                orderNumber: orderNumber,
+                totalAmount: totalAmount.toFixed(2),
+                orderDetails: cart.map(item =>
+                    `${item.name} (${item.size}) - ${item.quantity} x ${item.price} PLN = ${(item.quantity * item.price).toFixed(2)} PLN`
+                ).join('\n')
+            };
+            // Wysyłka e-maila do kupującego
+            emailjs.send("service_cuiw6d3", "template_002e1ki", formData)
+                .then(function(response) {
+                    console.log('E-mail do kupującego został wysłany!', response.status, response.text);
+                })
+                .catch(function(error) {
+                    console.error('Błąd podczas wysyłania e-maila do kupującego:', error);
+                });
+            // Wysyłka e-maila do sprzedawcy (Ciebie)
+            const sellerEmailData = {
+                ...formData, // Kopiuj dane zamówienia
+                email: "perfume0luxe@gmail.com" 
+            };
+            emailjs.send("service_cuiw6d3", "template_002e1ki", sellerEmailData)
+                .then(function(response) {
+                    console.log('E-mail do sprzedawcy został wysłany!', response.status, response.text);
+                    // Pokaż powiadomienie o sukcesie
+                    showNotification("Zamówienie zostało złożone!");
+                    // Przekieruj do strony płatności z numerem zamówienia
+                    window.location.href = `pl.html?orderNumber=${encodeURIComponent(orderNumber)}`;
+                })
+                .catch(function(error) {
+                    console.error('Błąd podczas wysyłania e-maila do sprzedawcy:', error);
+                    alert('Wystąpił błąd podczas przetwarzania zamówienia. Spróbuj ponownie.');
+                });
+        });
+
+        // Przełącznik trybu ciemnego/jasnego
+        document.getElementById('dark-mode-toggle').addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const icon = document.querySelector('#dark-mode-toggle i');
+            if (document.body.classList.contains('dark-mode')) {
+                icon.classList.replace('fa-moon', 'fa-sun'); // Tryb ciemny - ikona słońca
+                localStorage.setItem('darkMode', 'enabled'); // Zapisz ustawienie w localStorage
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon'); // Tryb jasny - ikona księżyca
+                localStorage.setItem('darkMode', 'disabled'); // Zapisz ustawienie w localStorage
+            }
+        });
+
+        // Sprawdź localStorage przy ładowaniu strony
+        if (localStorage.getItem('darkMode') === 'enabled' || !localStorage.getItem('darkMode')) {
+            document.body.classList.add('dark-mode'); // Domyślnie tryb ciemny
+            document.querySelector('#dark-mode-toggle i').classList.replace('fa-moon', 'fa-sun'); // Ustaw ikonę słońca
+        } else {
+            document.body.classList.remove('dark-mode'); // Tryb jasny
+            document.querySelector('#dark-mode-toggle i').classList.replace('fa-sun', 'fa-moon'); // Ustaw ikonę księżyca
+        }
+
+        // Wyświetl zawartość koszyka przy ładowaniu strony
+        displayCart();
+        updateCartCounter();
+    });
+    </script>
+</body>
+</html>

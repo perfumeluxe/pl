@@ -96,25 +96,48 @@
             <p><strong>Kwota do zapłaty:</strong><br> <span id="kwota"></span> PLN</p>
         </div>
         <p>W tytule przelewu wpisz swoje imię, nazwisko oraz email</p>
-        <button class="next-button" onclick="window.location.href='d.html'">Dalej</button>
+        <button class="next-button" onclick="proceedToThankYou()">Dalej</button>
     </div>
 
     <script>
+        // Funkcja obliczająca całkowitą cenę z koszyka
         function calculateTotalPrice() {
             let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
             let totalPrice = 0;
-
+            
             cartItems.forEach(item => {
                 totalPrice += item.price * (item.quantity || 1);
             });
-
-            totalPrice += 20; // Koszt wysyłki
-
+            
+            totalPrice += 20; // Dodanie kosztu wysyłki
+            
             return totalPrice;
         }
 
+        // Ustaw kwotę do zapłaty na stronie
         document.getElementById("kwota").textContent = calculateTotalPrice().toFixed(2);
+        
+        // Zapisz kwotę w localStorage dla ewentualnego późniejszego użycia
         localStorage.setItem('totalPrice', calculateTotalPrice().toFixed(2));
+
+        // Pobierz numer zamówienia z parametru URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const orderNumber = urlParams.get('orderNumber');
+
+        // Zapisz numer zamówienia w localStorage
+        if (orderNumber) {
+            localStorage.setItem('orderNumber', orderNumber);
+        }
+
+        function proceedToThankYou() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderNumber = urlParams.get('orderNumber');
+            if (orderNumber) {
+                window.location.href = `d.html?orderNumber=${encodeURIComponent(orderNumber)}`;
+            } else {
+                alert("Brak numeru zamówienia. Skontaktuj się z nami.");
+            }
+        }
     </script>
 </body>
 </html>

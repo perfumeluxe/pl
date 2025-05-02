@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="p.jpg">
     <title>Perfume Luxe</title>
-    <meta name="description" content="Kup oryginalne perfumy na odlewki. Tanie perfumy w małych pojemnościach – idealne na każdą okazję.">
-    <meta name="keywords" content="perfumy, odlewki, oryginalne perfumy, tanie perfumy, perfumy na próbę, odlewki perfum, perfumy odlewki, perfume luxe">
+    <meta name="description" content="Kup oryginalne perfumy na odlewki.">
+    <meta name="keywords" content="perfume luxe, perfumy, odlewki, oryginalne perfumy, tanie perfumy, perfumy na próbę, odlewki perfum, perfumy odlewki">
     <meta name="google-site-verification" content="HQ-rFuAfxiYVLJfrmaV_yzKEsTIYCnN0Pg5HP3XvdP8" />
     <style>
         * {
@@ -27,7 +27,7 @@
             padding: 1.5rem;
             text-align: center;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: relative;
+            position: relative;            
         }
         
         .header-overlay {
@@ -87,6 +87,9 @@
             align-items: center;
             position: relative;
             z-index: 1;
+            background: rgba(255, 255, 255, 0.2) !important;
+            color: #f8f9fa !important;
+            text-decoration: none !important;
         }
 
         .category i {
@@ -94,7 +97,8 @@
             font-size: 1.1rem;
         }
         .category:hover {
-            background: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.4) !important;
+            color: #f8f9fa !important;
             transform: translateX(5px);
         }
         .main-content {
@@ -124,6 +128,7 @@
             padding: 15px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            color:#343a40;
         }
 
         .filter-group h3 {
@@ -143,6 +148,7 @@
             background: white;
             border: 1px solid #dee2e6;
             border-radius: 20px;
+            color: #343a40;
             cursor: pointer;
             transition: all 0.3s;
             font-size: 0.9rem;
@@ -153,9 +159,10 @@
         }
 
         .filter-btn.active {
-            background: #3a7bd5;
-            color: white;
-            border-color: #3a7bd5;
+            background: #2d2d2d;
+            color: #e0e0e0;
+            border-color: #2d2d2d;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
         
         .products-grid {
@@ -176,6 +183,7 @@
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 0.5s ease forwards;
+            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
             height: 100%;
@@ -249,22 +257,28 @@
         }
         
         .product-info {
-            padding: 1.2rem;
-            flex: 1;
+            padding: 15px;
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
-            padding-bottom: 15px;
         }
         
         .product-title {
             font-size: 1.1rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: auto;
             color: #212529;
             cursor: pointer;
             transition: color 0.3s;
             font-weight: 600;
+            text-align: center;
         }
         
+        .product-bottom-section {
+            margin-top: auto; /* Przykleja całą sekcję do dołu */
+            text-align: center;
+            padding-top: 10px;
+        }
+
         .product-title:hover {
             color: #3a7bd5;
         }
@@ -272,19 +286,19 @@
         .product-size {
             font-size: 0.9rem;
             color: #6c757d;
-            margin-bottom: 0.5rem;
+            margin-bottom: 5px;
         }
         
         .product-price {
             font-weight: bold;
-            color: #28a745;
-            margin-bottom: 1rem;
+            color: #3471c5;
+            margin-bottom: 15px;
             font-size: 1.2rem;
         }
         
         .add-to-cart {
             width: 100%;
-            padding: 0.7rem;
+            padding: 10px;
             background: #3a7bd5;
             color: white;
             border: none;
@@ -296,11 +310,11 @@
             align-items: center;
             justify-content: center;
             margin-top: auto;
+            pointer-events: auto;
         }
         
         .add-to-cart i {
             margin-right: 8px;
-            margin-top: auto;
         }
 
         .add-to-cart:hover {
@@ -318,6 +332,35 @@
             padding-top: 15px;
         }
 
+        /* Nowe style dla wyrównania elementów produktu */
+        .product-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .product-name {
+            flex: 2;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .product-price-container {
+            flex: 1;
+            text-align: right;
+            font-weight: bold;
+            color: #28a745;
+            font-size: 1.2rem;
+        }
+
+        .product-bottom-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
         #cart {
             display: none;
             margin-top: 2rem;
@@ -333,10 +376,21 @@
             opacity: 0;
             transform: translateX(50px);
             transition: opacity 0.4s ease, transform 0.4s ease;
+            transition: all 0.3s ease;
             max-height: 70vh;
             overflow-y: auto;
+            color: #333;
         }
         
+        #cart .cart-items tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        #cart .cart-items th {
+            background-color: #f8f9fa;
+            color: #495057;
+        }
+
         .cart-items-container {
             max-height: 50vh;
             overflow-y: auto;
@@ -460,6 +514,17 @@
             color: #212529;
         }
         
+        body.dark-mode .total-price {
+            color: #3a7bd5 !important; /* Jasnoniebieski */
+            font-weight: bold;
+        }
+
+        body.dark-mode .total-price {
+            text-shadow: 0 0 5px rgba(58, 123, 213, 0.3);
+            transition: color 0.3s ease;
+        }
+
+
         .cart-buttons {
             display: flex;
             justify-content: flex-end;
@@ -616,30 +681,420 @@
                 width: 100%;
             }
         }
-        
-    
-        .category i {
-            margin-right: 10px;
-            font-size: 1.1rem;
-        }
-        .category:hover {
-            background: rgba(255, 255, 255, 0.4);
-            transform: translateX(5px);
-        }
-        
-        .main-content {
-            flex: 1;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0);
+
+        .star-container {
             position: relative;
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            line-height: 1;
+        }
+        
+        .star-container i {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 16px;
+            vertical-align: baseline;
+        }
+        
+        .star-container .fa-star {
+            color: #2533b6; /* Kolor wypełnionej części */
+        }
+        
+        .star-container .far {
+            color: #2533b6; /* Kolor obramówki */
+            opacity: 0.3;
+        }
+        
+        .product-rating {
+            margin: 5px 0; 
+            color: #525fd1;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3px;
+            text-align: center;
+            white-space: nowrap;
+        }
+        
+        .product-details {
+            margin: auto 0;
+            text-align: center;
+        }
+
+        .star-container {
+            position: relative;
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+        }
+        
+        .star-container .far,
+        .star-container .fas {
+            font-size: 16px;
+        }
+        
+        .partial-star {
+            position: absolute;
+            top: 0;
+            left: 0;
             overflow: hidden;
+            color: #2533b6;
+        }
+        
+        .no-rating {
+            color: #000000;
+            font-size: 12px;
+        }
+        /* Dark Mode - globalne style */
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+        }
+
+        /* Kontenery produktów */
+        body.dark-mode .product-card {
+            background: #1e1e1e;
+            border: 1px solid #333;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        }
+
+        /* Tła zdjęć */
+        body.dark-mode .product-image-container {
+            background: #2d2d2d !important;
+        }
+
+        /* Zdjęcia produktów */
+        body.dark-mode .product-image {
+            filter: brightness(0.85) contrast(1.1);
+            opacity: 0.9;
+        }
+
+        /* Teksty i nagłówki */
+        body.dark-mode .product-title,
+        body.dark-mode .product-price,
+        body.dark-mode .page-title,
+        body.dark-mode .product-size {
+            color: #f5f5f5 !important;
+        }
+
+        /* Sidebar */
+        body.dark-mode .sidebar::before {
+            background: rgba(30, 30, 30, 0.95);
+        }
+
+        /* Filtry */
+        body.dark-mode .filter-group {
+            background: #2d2d2d;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .filter-btn {
+            background: #3d3d3d;
+            color: #e0e0e0;
+            border-color: #4d4d4d;
+        }
+
+        #cart .cart-action-btn {
+            transition: all 0.3s;
+        }
+
+        #cart p {
+            color: inherit; /* Dziedziczy kolor z rodzica */
+        }
+
+        /* Koszyk */
+        body.dark-mode #cart {
+            background: #1e1e1e;
+            border-color: #333;
+            color: #e0e0e0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        }
+
+        body.dark-mode #cart .cart-items tr:hover {
+            background-color: transparent; /* Brak reakcji na hover */
+        }
+
+        body.dark-mode #cart .cart-items th {
+            background-color: #252525; /* Ciemniejsze tło nagłówków */
+            color: white;
+            border-bottom-color: #333;
+        }
+
+        body.dark-mode #cart .cart-items td {
+            border-bottom-color: #333;
+        }
+
+        body.dark-mode .cart-items th {
+            background: #252525;
+            color: #f5f5f5;
+        }
+
+        /* Przyciski */
+        body.dark-mode .add-to-cart {
+            background: #3a7bd5;
+            color: white;
+        }
+
+        body.dark-mode .add-to-cart:hover {
+            background: #2a6bc5;
+        }
+
+        /* Gwiazdki ocen */
+        body.dark-mode .fa-star {
+            color: #ffc107;
+        }
+
+        /* Przycisk przełączania trybu */
+        .dark-mode-btn {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+
+        body.dark-mode .dark-mode-btn {
+            color: #ffc107;
+        }
+        body.dark-mode .filter-btn:hover {
+            background: #4d4d4d;
+        }
+
+        body.dark-mode .filter-btn.active {
+            background: #3a7bd5;
+            color: white;
+            border-color: #3a7bd5;
+        }
+
+        body.dark-mode .filter-group h3 {
+            color: #f5f5f5;
+        }
+
+        body.dark-mode::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7); 
+            z-index: -1;
+        }
+
+        /* Quick View Modal */
+        .quick-view-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .quick-view-content {
+            background: white;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 800px;
+            padding: 30px;
+            position: relative;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        body.dark-mode .quick-view-content {
+            background: #1e1e1e;
+            color: #e0e0e0;
+        }
+
+        .quick-view-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #333;
+        }
+
+        body.dark-mode .quick-view-close {
+            color: #e0e0e0;
+        }
+
+        .quick-view-container {
+            display: flex;
+            gap: 30px;
+        }
+
+        .quick-view-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f8f9fa;
+            padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .quick-view-image {
+            background: #2d2d2d;
+        }
+
+        .quick-view-image img {
+            max-width: 100%;
+            max-height: 300px;
+            object-fit: contain;
+        }
+
+        .quick-view-details {
+            flex: 1;   
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            text-align: center; 
+        }
+        .quick-view-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #212529;
+        }
+
+        body.dark-mode .quick-view-title {
+            color: #f5f5f5;
+        }
+
+        .quick-view-price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #3471c5;
+            margin: 15px 0;
+        }
+
+        .quick-view-description {
+            line-height: 1.6;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .quick-view-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .quick-view-btn {
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .quick-view-add-to-cart {
+            background: #3a7bd5;
+            color: white;
+            border: none;
+        }
+
+        .quick-view-add-to-cart:hover {
+            background: #2a6bc5;
+        }
+
+        .quick-view-view-details {
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
+            padding: 15px 25px;
+            font-size: 1.1rem;
+            text-decoration: none !important; 
+            display: flex; 
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        a.quick-view-btn.quick-view-view-details {
+            text-decoration: none !important;
+        }
+
+        body.dark-mode .quick-view-view-details {
+            color: #3a7bd5;
+            border-color: #3a7bd5;
+        }
+
+        .quick-view-view-details:hover {
+            background: rgba(58, 123, 213, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .quick-view-container {
+                flex-direction: column;
+            }
+
+            .quick-view-content {
+                width: 95%;
+                padding: 20px;
+            }
+        }
+        .quick-view-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            justify-content: center;
+        }
+
+        .quick-view-view-details {
+            width: 100%;
+            text-align: center;
+            padding: 15px 25px; 
+            font-size: 1.1rem;
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body>
+<body class="dark-mode">
+
+    <!-- Quick View Modal -->
+<div id="quickViewModal" class="quick-view-modal">
+    <div class="quick-view-content">
+        <span class="quick-view-close">&times;</span>
+        <div class="quick-view-container">
+            <div class="quick-view-image">
+                <img id="quickViewImage" src="" alt="">
+            </div>
+            <div class="quick-view-details">
+                <h2 id="quickViewTitle" class="quick-view-title"></h2>
+                <div id="quickViewRating" class="product-rating"></div>
+                <p id="quickViewSize" class="product-size"></p>
+                <p id="quickViewPrice" class="quick-view-price"></p>
+                <p id="quickViewDescription" class="quick-view-description"></p>
+                <div class="quick-view-actions">
+                    <a id="quickViewDetailsLink" href="#" class="quick-view-btn quick-view-view-details" style="width: 100%; justify-content: center;">
+                        <i class="fas fa-info-circle"></i> Szczegóły produktu
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
     <div id="notification" class="notification">
         <i class="fas fa-check-circle"></i> Produkt dodany do koszyka!
     </div>
@@ -647,6 +1102,9 @@
     <header>
         <div class="header-overlay"></div>
         <h1><i class="fas fa-spray-can"></i> Perfume Luxe</h1>
+        <button id="dark-mode-toggle" class="dark-mode-btn">
+            <i class="fas fa-moon"></i> <!-- Ikona księżyca (domyślnie) -->
+        </button>
     </header>
     
     <div class="container">
@@ -658,9 +1116,6 @@
             <div class="category" onclick="showCategory('damskie')">
                 <i class="fas fa-female"></i> Perfumy Damskie
             </div>
-            <a href="k.html" target="_blank" class="category">
-                <i class="fas fa-envelope"></i> Kontakt
-            </a>
             <div class="category" id="cart-button">
                 <i class="fas fa-shopping-cart"></i> Koszyk 
                 <span id="cart-counter" class="cart-counter" style="display: none;">0</span>
@@ -668,10 +1123,11 @@
         </div>
         
         <div class="main-content">
-            <h2 class="page-title">Nasze produkty</h2>
+            
+            <h2 class="page-title" id="page-title">Nasze produkty</h2>
             
             <div class="filters">
-                <div class="filter-group">
+                <div class="filter-group">    
                     <h3><i class="fas fa-sort-amount-down"></i> Sortuj według ceny</h3>
                     <div class="filter-options">
                         <button class="filter-btn" id="sort-none" onclick="resetSort()">Wszystkie</button>
@@ -702,8 +1158,6 @@
                 <div id="cart-content">
                     <!-- Tu będzie zawartość koszyka -->
                 </div>
-                <p>Jeżeli nie widzisz swojego koszyka, polecam odświerzyć stronę, lub nacisnij na ikonkę <a href="index.html"><i class="fas fa-cart-plus"></i></a></p>
-                <p>Jeżeli skompletowałeś swoj koszyk nacisnij <a href="k.html" target="_blank">tutaj</a></p>
             </div>
         </div>
     </div>
@@ -715,153 +1169,269 @@
                     id: 1,
                     name: "VERSACE EROS EDP", 
                     price: 115, 
-                    size: "20 ml", 
+                    size: "20 ml",
+                    rating: 4.7, 
                     img: "versaceeros.jpg", 
                     link: "versaceeros.html",
                     badge: "Bestseller",
                     seasons: ["wiosna", "lato", "jesien", "zima"],
-                    available: true
+                    available: true,
+                    description: "Eros to uwodzicielska kompozycja Versace łącząca świeże nuty mięty i zielonego jabłka z ciepłym akcentem wanilii i drewna. Idealny dla mężczyzn, którzy lubią przyciągać uwagę."
                 },
                 { 
                     id: 2,
                     name: "VERSACE EROS ENERGY EDP", 
                     price: 115, 
                     size: "20 ml", 
+                    rating: 4.6,
                     img: "versaceerosenergy.jpg", 
                     link: "versaceerosenergy.html",
                     badge: "Bestseller",
                     seasons: ["wiosna", "lato", "jesien", "zima"],
-                    available: true
+                    available: true,
+                    description: "Eros Energy to energetyczna wersja klasycznego Erosa, z nutami czerwonej pomarańczy i zielonej mandarynki, które dodają świeżości i witalności."
                 },
                 { 
                     id: 3,
                     name: "VALENTINO UOMO BORN IN ROMA CORAL FANTASY", 
                     price: 145, 
                     size: "20 ml", 
+                    rating: 4.4,
                     img: "valentinouomoborninromacoralfantasy.jpg", 
                     link: "valentinouomoborninromacoralfantasy.html",
                     badge: "Nowość",
                     seasons: ["jesien", "zima"],
-                    available: true
+                    available: true,
+                    description: "Valentino Uomo Born in Roma Coral Fantasy to intensywny i zmysłowy zapach dla mężczyzn. Łączy świeżość gorzkiej pomarańczy i mięty z głębią bourbon vanilla i drzewnych akordów – idealny dla tych, którzy lubią wyróżniać się stylem."
+
                 },
                 { 
                     id: 4,
                     name: "DIOR SAUVAGE EDP", 
                     price: 145, 
-                    size: "20 ml", 
+                    size: "20 ml",
+                    rating: 4.8, 
                     img: "diorsauvageedp.jpg", 
                     link: "diorsauvageedp.html",
-                    badge: "Bestseller",
-                    seasons: ["wiosna", "lato"],
-                    available: false  // Produkt niedostępny
+                    
+                    seasons: ["wiosna", "lato", "jesien"],
+                    available: false,
+                    description: "Dior Sauvage EDP – wyrazisty, szlachetny i pełen charyzmy. Bergamotka rozbłyska pieprzną nutą, by przejść w zmysłową fuzję drewna i ambry. Elegancki, ale z dziką duszą – perfumy dla prawdziwego lidera."
                 },
                 {
                     id: 5,
                     name: "JEAN PAUL GAULTIER LE MALE ELIXIR", 
                     price: 145, 
-                    size: "20 ml", 
+                    size: "20 ml",
+                    rating: 4.6, 
                     img: "jpglemaleelixir.jpg", 
                     link: "jeanpaulgaultierlemaleelixir.html",
                     seasons: ["jesien", "zima"],
-                    available: true
+                    available: true,
+                    description: "Jean Paul Gaultier Le Male Elixir – uwodzicielski, intensywny i zmysłowy. Aksamitna wanilia łączy się z głębokim aromatem prażonej tonki, tworząc wyrafinowaną, słodko-korzenną kompozycję. Dla mężczyzn, którzy lubią olśniewać."
                 },
                 {
                     id: 6,
                     name: "EMPORIO ARMANI STRONGER WITH YOU INTENSELY", 
                     price: 130, 
                     size: "20 ml", 
+                    rating: 4.3,
                     img: "eastrognerwithyouintensely.jpg", 
                     link: "eastrongerwithyouintensely.html",
                     badge: "Promocja",
                     seasons: ["jesien", "zima"],
-                    available: true
+                    available: true,
+                    description : "Emporio Armani Stronger With You Intensely – intensywny, słodki i uwodzicielski. Eksplozja karmelowej wanilii, korzennego kardamonu i ciepłej nuty piżma tworzy zmysłowy, męski zapach z charakterem. Idealny dla tych, którzy nie boją się wyrażać swojej siły."
                 },
                 {
                     id: 7,
                     name: "EMPORIO ARMANI STRONGER WITH YOU ONLY", 
                     price: 130, 
                     size: "20 ml", 
+                    rating: 4.2,
                     img: "eastrognerwithyouonly.jpg", 
                     link: "eastrongerwithyouonly.html",
                     badge: "Promocja",
-                    seasons: ["wiosna", "lato", "jesien", "zima"],
-                    available: true
+                    seasons: ["jesien", "zima"],
+                    available: true,
+                    description: "Emporio Armani Stronger With You Only – wyjątkowy, intensywny i pełen pasji. Bogata wanilia łączy się z karmelem i korzennym akordem, tworząc zmysłową i ciepłą kompozycję. Dla tych, którzy pragną zostawić niezapomniane wrażenie."
                 },
                 {
                     id: 8,
                     name: "CAROLINA HERRERA BAD BOY EDT", 
                     price: 135, 
                     size: "20 ml", 
+                    rating: 4.3,
                     img: "chbadboyedt.jpg", 
                     link: "chbadboyedt.html",
                     badge: "Promocja",
                     seasons: ["wiosna", "jesien", "zima"],
-                    available: true
+                    available: true,
+                    description: "Carolina Herrera Bad Boy – buntowniczy, odważny i pełen energii. Ostra nuta pieprzu i świeżego bergamotu przeplata się z głęboką wełną i drzewnym akcentem, tworząc elektryzującą mieszankę. Dla mężczyzn, którzy łamią zasady i podążają własną drogą."
                 },
                 {
                     id: 9,
                     name: "CAROLINA HERRERA BAD BOY COBALT EDP", 
                     price: 135, 
                     size: "20 ml", 
+                    rating: 4.2,
                     img: "chbadboycobaltedp.jpg", 
                     link: "chbadboycobaltedp.html",
                     badge: "Promocja",
-                    seasons: ["wiosna", "jesien", "zima"],
-                    available: true
+                    seasons: ["wiosna", "lato", "jesien"],
+                    available: true,
+                    description: "Carolina Herrera Bad Boy Cobalt – elektryzujący, buntowniczy i pełen energii. Ostra nuta pieprzu łączy się z soczystym grejpfrutem, a głębia piżma i wetiweru dodaje zmysłowej mocy. Dla tych, którzy łamią zasady i świecą własnym światłem."
                 },
                 {
                     id: 10,
                     name: "YVES SAINT LAURENT EDP", 
                     price: 135, 
-                    size: "20 ml", 
+                    size: "20 ml",  
+                    rating: 4.6,
                     img: "ysledp.jpg", 
                     link: "ysledp.html",
                     badge: "Promocja",
                     seasons: ["wiosna", "lato", "jesien"],
-                    available: true
+                    available: true,
+                    description: "Yves Saint Laurent Y EDP – nowoczesny, elegancki i pełen świeżości. Soczyste nuty bergamotki i jabłka łączą się z gładkim akcentem drzewa gwajakowego i zmysłowym tonem ambroxanu. Dla mężczyzn, którzy cenią sobie wyrafinowanie z nutą młodzieńczej energii."
                 },
                 {
                     id: 11,
                     name: "BLEU DE CHANEL EDP", 
                     price: 150, 
                     size: "20 ml", 
+                    rating: 4.7,
                     img: "bleudechanel.jpg",  
                     link: "bleudechanel.html",
-                    badge: "Promocja",
-                    seasons: ["wiosna", "lato", "jesien"],
-                    available: false
+                    seasons: ["wiosna", "lato", "jesien", "zima"],
+                    available: false,
+                    description :"Bleu de Chanel EDP – ponadczasowy, elegancki i pełen charakteru. Rześka nuta cytrusów i mięty płynnie przechodzi w zmysłową kompozycję drzewną z akcentami kadzidła i piżma. Dla mężczyzn, którzy łączą klasę z nowoczesną siłą wyrazu."
                 },
                 {
                     id: 12,
                     name: "RABANNE PHANTOM EDT", 
                     price: 110, 
                     size: "20 ml", 
+                    rating: 4.0,
                     img: "rabannephantomedt.jpg",  
                     link: "rabannephantomedt.html",
                     badge: "Promocja",
-                    seasons: ["wiosna", "lato", "jesien"],
-                    available: true
+                    seasons: ["wiosna", "lato"],
+                    available: true,
+                    description: "Paco Rabanne Phantom EDT – futurystyczny, odważny i pełen kontrastów. Soczysta nuta cytryny łączy się z aksamitną lawendą, by zanurzyć się w głębi kremowej wanilii i dymnego drewna. Dla tych, którzy lubią zaskakiwać i podążać własną ścieżką."
                 },
                 {
                     id: 13,
                     name: "MUGLER A*MEN RUBBER EDT", 
                     price: 115, 
                     size: "20 ml", 
+                    rating: 4.1,
                     img: "mugleramenrubber.jpg",  
                     link: "mugleramenrubber.html",
                     badge: "Promocja",
                     seasons: ["jesien", "zima"],
-                    available: true
+                    available: true,
+                    description: "Mugler A*Men Pure Malt EDT – intensywny, słodko-korzenno-drzewny zapach z uwodzicielską nutą prażonego słodu i aromatycznej kawy. Dla mężczyzn, którzy lubią odważne, charakterne kompozycje z nutą dekadencji."
+                },
+                {
+                    id: 14,
+                    name: "ONE MILION EDT", 
+                    price: 115, 
+                    size: "20 ml", 
+                    rating: 4.1,
+                    img: "mugleramenrubber.jpg",  
+                    link: "mugleramenrubber.html",
+                    badge: "Promocja",
+                    seasons: ["jesien", "zima"],
+                    available: true,
+                    description: "Mugler A*Men Pure Malt EDT – intensywny, słodko-korzenno-drzewny zapach z uwodzicielską nutą prażonego słodu i aromatycznej kawy. Dla mężczyzn, którzy lubią odważne, charakterne kompozycje z nutą dekadencji."
+                },
+                {
+                    id: 15,
+                    name: "ONE MILION EDP", 
+                    price: 115, 
+                    size: "20 ml", 
+                    rating: 4.1,
+                    img: "mugleramenrubber.jpg",  
+                    link: "mugleramenrubber.html",
+                    badge: "Promocja",
+                    seasons: ["jesien", "zima"],
+                    available: true,
+                    description: "Mugler A*Men Pure Malt EDT – intensywny, słodko-korzenno-drzewny zapach z uwodzicielską nutą prażonego słodu i aromatycznej kawy. Dla mężczyzn, którzy lubią odważne, charakterne kompozycje z nutą dekadencji."
                 }
             ],
             damskie: [],
             unisex: []
         };
         
+            window.addEventListener('DOMContentLoaded', function() {
+            cart = JSON.parse(localStorage.getItem('cart')) || [];
+            updateCartCounter();
+        });
+
+        window.addEventListener('storage', function(event) {
+            if (event.key === 'cart') {
+                // Aktualizuj koszyk gdy zmieni się localStorage
+                cart = JSON.parse(event.newValue || '[]');
+                updateCartCounter();
+
+                // Jeśli koszyk jest aktualnie otwarty, zaktualizuj jego zawartość
+                if (document.getElementById('cart').classList.contains('show')) {
+                    showCart();
+                }
+            }
+        });
+
+        // Dodatkowo możesz dodać okresowe sprawdzanie co sekundę (na wypadek, gdyby event storage nie działał)
+        setInterval(function() {
+            const savedCart = JSON.parse(localStorage.getItem('cart') || '[]');
+            if (JSON.stringify(savedCart) !== JSON.stringify(cart)) {
+                cart = savedCart;
+                updateCartCounter();
+                if (document.getElementById('cart').classList.contains('show')) {
+                    showCart();
+                }
+            }
+        }, 1000);
+
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         let currentCategory = 'meskie';
         let currentSort = '';
         let currentSeasonFilter = '';
+        
+        // Quick View functions
+        function openQuickView(productId, category) {
+            const product = products[category].find(p => p.id === productId);
+            if (!product) return;
+
+            document.getElementById('quickViewImage').src = product.img;
+            document.getElementById('quickViewTitle').textContent = product.name;
+            document.getElementById('quickViewPrice').textContent = `${product.price} PLN`;
+            document.getElementById('quickViewSize').textContent = product.size;
+            document.getElementById('quickViewRating').innerHTML = renderStars(product.rating || 0);
+
+            // Ustaw atrybut target="_blank" dla linku
+            const detailsLink = document.getElementById('quickViewDetailsLink');
+            detailsLink.href = product.link;
+            detailsLink.target = "_blank"; // Otwiera w nowej karcie
+
+            document.getElementById('quickViewDescription').textContent = product.description || 
+                "Oryginalna kompozycja zapachowa w formie odlewki. Idealne rozwiązanie dla osób, które chcą przetestować zapach przed zakupem pełnowymiarowej wersji.";
+
+            // Show modal
+            document.getElementById('quickViewModal').style.display = 'flex';
+        }
+        function closeQuickView() {
+            document.getElementById('quickViewModal').style.display = 'none';
+        }
+        
+        // Close modal when clicking on X or outside
+        document.querySelector('.quick-view-close').addEventListener('click', closeQuickView);
+        document.getElementById('quickViewModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeQuickView();
+            }
+        });
         
         function showNotification(message) {
             const notification = document.getElementById("notification");
@@ -916,53 +1486,131 @@
 
         function applyFilters() {
             let filteredProducts = [...products[currentCategory]];
-            
+                
             if (currentSeasonFilter) {
                 filteredProducts = filteredProducts.filter(
                     product => product.seasons.includes(currentSeasonFilter)
                 );
             }
-            
+        
             if (currentSort === 'price-asc') {
                 filteredProducts.sort((a, b) => a.price - b.price);
             } else if (currentSort === 'price-desc') {
                 filteredProducts.sort((a, b) => b.price - a.price);
             }
-            
+        
+            // Sortowanie tak, by dostępne produkty były na górze
+            filteredProducts.sort((a, b) => {
+                if (a.available && !b.available) {
+                    return -1;  // Produkt 'a' jest dostępny, więc idzie wyżej
+                }
+                if (!a.available && b.available) {
+                    return 1;   // Produkt 'b' jest dostępny, więc idzie wyżej
+                }
+                return 0; // Jeśli oba są dostępne lub oba niedostępne, nie zmieniamy ich kolejności
+            });
+        
             displayProducts(filteredProducts);
         }
+
+        
+
+        // Inicjalizacja przy ładowaniu strony
+        if (localStorage.getItem('darkTheme') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+
 
         function displayProducts(productsToDisplay) {
             const container = document.getElementById('products');
             container.innerHTML = "";
-    
+
             productsToDisplay.forEach((product, index) => {
                 const badge = product.badge ? `<span class="product-badge">${product.badge}</span>` : '';
                 const unavailableLabel = !product.available ? `<div class="unavailable-label">Produkt niedostępny</div>` : '';
                 const productCard = document.createElement('div');
                 productCard.className = `product-card ${!product.available ? 'unavailable' : ''}`;
                 productCard.style.animationDelay = `${index * 0.1}s`;
+                productCard.style.cursor = 'pointer'; // Dodajemy kursor wskazujący
+                productCard.onclick = function() {
+                    if (product.available) {
+                        openQuickView(product.id, currentCategory);
+                    }
+                };
+
                 productCard.innerHTML = `
                     ${badge}
-                    <div class="product-image-container" onclick="${product.available ? `window.open('${product.link}', '_blank')` : 'return false'}">
+                    <div class="product-image-container">
                         ${unavailableLabel}
                         <img src="${product.img}" alt="${product.name}" class="product-image" style="${!product.available ? 'opacity: 0.5; filter: grayscale(100%);' : ''}">
                     </div>
                     <div class="product-info">
-                        <h3 class="product-title" onclick="${product.available ? `window.open('${product.link}', '_blank')` : 'return false'}" style="${!product.available ? 'color: #6c757d;' : ''}">${product.name}</h3>
-                        <p class="product-size" style="${!product.available ? 'color: #adb5bd;' : ''}">${product.size}</p>
-                        <p class="product-price" style="${!product.available ? 'color: #adb5bd;' : ''}">${product.price} PLN</p>
-                        <button class="add-to-cart ${!product.available ? 'unavailable-btn' : ''}" 
-                                onclick="${product.available ? `addToCart(${product.id}, '${currentCategory}', event)` : 'return false'}" 
-                                ${!product.available ? 'disabled' : ''}>
-                            <i class="fas fa-cart-plus"></i> ${product.available ? 'Dodaj do koszyka' : 'Niedostępny'}
-                        </button>
+                        <h3 class="product-title">${product.name}</h3>
+                        <div class="product-bottom-section">
+                            <div class="product-rating">${renderStars(product.rating || 0)}</div>
+                            <p class="product-size">${product.size}</p>
+                            <p class="product-price">${product.price} PLN</p>
+                            <button class="add-to-cart ${!product.available ? 'unavailable-btn' : ''}" 
+                                    onclick="${product.available ? `addToCart(${product.id}, '${currentCategory}', event)` : 'return false'}" 
+                                    ${!product.available ? 'disabled' : ''}>
+                                <i class="fas fa-cart-plus"></i> ${product.available ? 'Dodaj do koszyka' : 'Niedostępny'}
+                            </button>
+                        </div>
                     </div>
                 `;
                 container.appendChild(productCard);
             });
         }
-        
+
+        function renderStars(rating) {
+            if (!rating || rating == 0) return '<div class="no-rating">Brak ocen</div>';
+                
+            rating = parseFloat(rating); // Konwersja na liczbę (np. "4.3" -> 4.3)
+            let stars = '';
+                
+            for (let i = 1; i <= 5; i++) {
+                if (i <= rating) {
+                    stars += '<i class="fas fa-star"></i>'; // Pełna gwiazdka
+                } else if (i - 1 < rating && rating < i) {
+                    // Częściowe wypełnienie (np. 4.3 -> 30% piątej gwiazdki)
+                    const fillPercentage = Math.round((rating - (i - 1.15)) * 100);
+                    stars += `
+                        <div class="star-container">
+                            <i class="far fa-star"></i>
+                            <i class="fas fa-star partial-star" style="width: ${fillPercentage}%"></i>
+                        </div>
+                    `;
+                } else {
+                    stars += '<i class="far fa-star"></i>'; // Pusta gwiazdka
+                }
+            }
+            return `${stars} <span>${rating.toFixed(1)}</span>`;
+        }
+
+        document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('fa-star') || e.target.classList.contains('fa-star-half-alt')) {
+        const ratingContainer = e.target.closest('.product-rating');
+        const productId = parseInt(ratingContainer.dataset.id);
+        const stars = ratingContainer.querySelectorAll('.fa-star, .fa-star-half-alt');
+        const clickedIndex = Array.from(stars).indexOf(e.target);
+        const newRating = clickedIndex + 1;
+
+        // Aktualizacja oceny w danych produktu
+        const product = products[currentCategory].find(p => p.id === productId);
+        if (product) {
+            product.rating = newRating;
+
+            // Pobierz istniejące oceny z localStorage
+            const ratings = JSON.parse(localStorage.getItem('productRatings') || '{}');
+            ratings[productId] = newRating;
+            localStorage.setItem('productRatings', JSON.stringify(ratings));
+
+            // Zaktualizuj wyświetlanie gwiazdek
+            ratingContainer.innerHTML = renderStars(newRating);
+        }
+    }
+});
+
         function showCategory(category) {
             currentCategory = category;
             currentSort = '';
@@ -980,6 +1628,13 @@
             cartContainer.classList.remove('show');
             container.classList.remove('hide');
             container.classList.add('show');
+
+            document.getElementById('cart').classList.remove('show');
+            document.getElementById('products').classList.add('show');
+
+            document.querySelector('.filters').style.display = 'flex';
+            document.getElementById('page-title').style.display = 'block';
+
             
             applyFilters();
         }
@@ -1009,18 +1664,28 @@
             showNotification(`${product.name} (${product.size}) dodany do koszyka!`);
         }
         
-        function showCart() {
+        function showCart(e) {
+            if (e) {
+                e.stopPropagation();
+                e.preventDefault();
+            }
+
+            cart = JSON.parse(localStorage.getItem('cart')) || [];
             const container = document.getElementById('products');
             const cartContainer = document.getElementById('cart');
             const cartContent = document.getElementById('cart-content');
-            
+
+            // Ukryj filtry
+            document.querySelector('.filters').style.display = 'none';
+            document.getElementById('page-title').style.display = 'none';
+
             container.classList.remove('show');
             container.classList.add('hide');
-            
+
             setTimeout(() => {
                 cartContainer.classList.add('show');
             }, 300);
-            
+        
             if (cart.length === 0) {
                 cartContent.innerHTML = `
                     <div class="empty-cart fade-in">
@@ -1033,8 +1698,8 @@
                     </div>
                 `;
                 return;
-            }
-            
+            } else {
+        
             let html = `
                 <table class="cart-items">
                     <thead>
@@ -1049,13 +1714,13 @@
                     </thead>
                     <tbody>
             `;
-            
+                    
             let total = 0;
-            
+                    
             cart.forEach((item, index) => {
                 const itemTotal = item.price * item.quantity;
                 total += itemTotal;
-                
+            
                 html += `
                 <tr>
                     <td style="display: flex; align-items: center; gap: 15px;">
@@ -1081,7 +1746,7 @@
                 </tr>
                 `;
             });
-            
+        
             html += `
                     </tbody>
                 </table>
@@ -1092,11 +1757,36 @@
                         <button class="cart-action-btn clear-cart-btn" onclick="clearCart()">
                             <i class="fas fa-trash-alt"></i> Usuń wszystko
                         </button>
+                        <a href="w.html" class="cart-action-btn" target="_blank" style="background: #28a745; color: white; text-decoration: none;">
+                            <i class="fas fa-check-circle"></i> Złóż zamówienie
+                        </a>
                     </div>
                 </div>
             `;
             
             cartContent.innerHTML = html;
+            }  
+        }     
+
+        // Dark Mode - przełącznik
+        document.getElementById('dark-mode-toggle').addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const icon = document.querySelector('#dark-mode-toggle i');
+            
+            // Zmiana ikony (księżyc/słońce)
+            if (document.body.classList.contains('dark-mode')) {
+                icon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        });
+        
+        // Sprawdź localStorage przy ładowaniu strony
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+            document.querySelector('#dark-mode-toggle i').classList.replace('fa-moon', 'fa-sun');
         }
 
         function hideCart() {
@@ -1108,6 +1798,7 @@
             setTimeout(() => {
                 container.classList.remove('hide');
                 container.classList.add('show');
+                document.querySelector('.filters').style.display = 'flex';
             }, 300);
         }
         
@@ -1200,7 +1891,6 @@
             showCart();
         });
         
-        // Inicjalizacja
         showCategory('meskie');
         updateCartCounter();
         document.getElementById('sort-none').classList.add('active');
