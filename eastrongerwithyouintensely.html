@@ -1060,7 +1060,7 @@
                 selectedPrice = parseInt(this.getAttribute('data-price'));
                 selectedSize = this.getAttribute('data-size');
                 
-                bannerText.textContent = `EM STRONGER WITH YOU INTENSELY`;
+                bannerText.textContent = `EA STRONGER WITH YOU INTENSELY`;
             });
         });       
         
@@ -1083,10 +1083,10 @@
             // Dane produktu
             const product = {
                 id: 6, // Unikalne ID dla tego produktu i rozmiaru
-                name: 'EM STRONGER WITH YOU INTENSELY',
+                name: 'EA STRONGER WITH YOU INTENSELY',
                 size: selectedSize,
                 price: selectedPrice,
-                img: 'emstrongerwithyouintensely.jpg',
+                img: 'eastrognerwithyouintensely.jpg',
                 link: window.location.href,
                 available: true,
                 quantity: 1
@@ -1109,10 +1109,10 @@
             localStorage.setItem('cart', JSON.stringify(cart));
             
             // Wyświetl powiadomienie
-            showNotification(`Dodano ${selectedSize} EM STRONGER WITH YOU INTENSELY do koszyka!`);
+            showNotification(`Dodano ${selectedSize} EA STRONGER WITH YOU INTENSELY do koszyka!`);
             
             // Aktualizacja banera
-            bannerText.textContent = `EM STRONGER WITH YOU INTENSELY`;
+            bannerText.textContent = `EA STRONGER WITH YOU INTENSELY`;
             localStorage.setItem('cart', JSON.stringify(cart));
     
             // Wywołanie zdarzenia storage (dla pewności)
