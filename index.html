@@ -369,9 +369,9 @@
             padding: 1.5rem;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
             border: 1px solid #e9ecef;
-            position: absolute;
-            top: 70px;
-            left: 2rem;
+            position: fixed;
+            top: 120px;
+            left: 270px;
             right: 2rem;
             opacity: 0;
             transform: translateX(50px);
@@ -380,6 +380,7 @@
             max-height: 70vh;
             overflow-y: auto;
             color: #333;
+            z-index: 100;
         }
         
         #cart .cart-items tr:hover {
@@ -401,6 +402,11 @@
             display: block;
             opacity: 1;
             transform: translateX(0);
+        }
+        #products {
+            transition: opacity 0.3s ease;
+            position: relative;
+            z-index: 1;
         }
         
         #products.hide {
@@ -645,6 +651,10 @@
             .filters {
                 flex-direction: column;
                 gap: 10px;
+            }
+            #cart {
+                left: 2rem;
+                top: 100px;
             }
         }
         
@@ -1170,7 +1180,7 @@
                     name: "VERSACE EROS EDP", 
                     price: 115, 
                     size: "20 ml",
-                    rating: 4.7, 
+                    rating: 4.9, 
                     img: "versaceeros.jpg", 
                     link: "versaceeros.html",
                     badge: "Bestseller",
@@ -1187,14 +1197,14 @@
                     img: "versaceerosenergy.jpg", 
                     link: "versaceerosenergy.html",
                     badge: "Bestseller",
-                    seasons: ["wiosna", "lato"],
+                    seasons: ["lato"],
                     available: true,
                     description: "Eros Energy to dynamiczna, bardziej energiczna odsłona klasycznego Erosa. Otwiera się soczystą mandarynką i cytryną, by przejść w intensywne nuty wanilii i tonki – idealny na letnie wieczory pełne energii."
                 },
                 { 
                     id: 18,
                     name: "VERSACE POUR HOMME DYLAN BLUE", 
-                    price: 115, 
+                    price: 120, 
                     size: "20 ml", 
                     rating: 4.8,
                     img: "versacedylanblue.jpg", 
@@ -1209,7 +1219,7 @@
                     name: "VALENTINO UOMO BORN IN ROMA CORAL FANTASY", 
                     price: 145, 
                     size: "20 ml", 
-                    rating: 4.4,
+                    rating: 4.6,
                     img: "valentinouomoborninromacoralfantasy.jpg", 
                     link: "valentinouomoborninromacoralfantasy.html",
                     badge: "Nowość",
@@ -1223,7 +1233,7 @@
                     name: "DIOR SAUVAGE EDP", 
                     price: 145, 
                     size: "20 ml",
-                    rating: 4.8, 
+                    rating: 4.5, 
                     img: "diorsauvageedp.jpg", 
                     link: "diorsauvageedp.html",
                     
@@ -1234,7 +1244,7 @@
                 {
                     id: 5,
                     name: "JEAN PAUL GAULTIER LE MALE ELIXIR", 
-                    price: 145, 
+                    price: 115, 
                     size: "20 ml",
                     rating: 4.6, 
                     img: "jpglemaleelixir.jpg", 
@@ -1246,9 +1256,9 @@
                 {
                     id: 17,
                     name: "JEAN PAUL GAULTIER ULTRA MALE", 
-                    price: 145, 
+                    price: 115, 
                     size: "20 ml",
-                    rating: 4.6, 
+                    rating: 4.2, 
                     img: "jpgultramale.jpg", 
                     link: "jeanpaulgaultierultramale.html",
                     seasons: ["jesien", "zima"],
@@ -1258,9 +1268,9 @@
                 {
                     id: 6,
                     name: "EMPORIO ARMANI STRONGER WITH YOU INTENSELY", 
-                    price: 130, 
+                    price: 150, 
                     size: "20 ml", 
-                    rating: 4.3,
+                    rating: 4.5,
                     img: "eastrognerwithyouintensely.jpg", 
                     link: "eastrongerwithyouintensely.html",
                     badge: "Promocja",
@@ -1271,9 +1281,9 @@
                 {
                     id: 7,
                     name: "EMPORIO ARMANI STRONGER WITH YOU ONLY", 
-                    price: 130, 
+                    price: 150, 
                     size: "20 ml", 
-                    rating: 4.2,
+                    rating: 4.3,
                     img: "eastrognerwithyouonly.jpg", 
                     link: "eastrongerwithyouonly.html",
                     badge: "Promocja",
@@ -1284,22 +1294,22 @@
                 {
                     id: 16,
                     name: "ACQUA DI GIO PROFONDO", 
-                    price: 115, 
+                    price: 240, 
                     size: "20 ml", 
-                    rating: 4.1,
+                    rating: 4.7,
                     img: "eaacquadigioprofondo.jpg",  
                     link: "eaacquadigioprofondo.html",
                     badge: "Promocja",
-                    seasons: ["jesien", "zima"],
+                    seasons: ["wiosna", "lato"],
                     available: true,
                     description: "Profondo to ciemniejsza, bardziej zmysłowa wersja Acqua di Gio. Słony balsam morski spotyka się z cytryną i cedrem, by zakończyć się głębokimi nutami myrry i kadzidła – idealny na eleganckie spotkania."
                 },
                 {
                     id: 8,
                     name: "CAROLINA HERRERA BAD BOY EDT", 
-                    price: 135, 
+                    price: 180, 
                     size: "20 ml", 
-                    rating: 4.3,
+                    rating: 4.4,
                     img: "chbadboyedt.jpg", 
                     link: "chbadboyedt.html",
                     badge: "Promocja",
@@ -1310,7 +1320,7 @@
                 {
                     id: 9,
                     name: "CAROLINA HERRERA BAD BOY COBALT EDP", 
-                    price: 135, 
+                    price: 180, 
                     size: "20 ml", 
                     rating: 4.2,
                     img: "chbadboycobaltedp.jpg", 
@@ -1323,20 +1333,20 @@
                 {
                     id: 10,
                     name: "YVES SAINT LAURENT EDP", 
-                    price: 135, 
+                    price: 185, 
                     size: "20 ml",  
                     rating: 4.6,
                     img: "ysledp.jpg", 
                     link: "ysledp.html",
                     badge: "Promocja",
-                    seasons: ["wiosna", "lato"],
+                    seasons: ["wiosna", "lato", "zima"],
                     available: true,
                     description: "Y EDP to nowoczesny, elegancki zapach z nutami jabłka i bergamotki, które płynnie przechodzą w gładki akcent drzewa gwajakowego i intensywny ambroxan. Dla mężczyzn, którzy łączą energię z wyrafinowaniem."
                 },
                 {
                     id: 11,
                     name: "BLEU DE CHANEL EDT", 
-                    price: 150, 
+                    price: 250, 
                     size: "20 ml", 
                     rating: 4.7,
                     img: "bleudechanel.jpg",  
@@ -1348,33 +1358,33 @@
                 {
                     id: 13,
                     name: "MUGLER A*MEN RUBBER EDT", 
-                    price: 115, 
+                    price: 145, 
                     size: "20 ml", 
                     rating: 4.1,
                     img: "mugleramenrubber.jpg",  
                     link: "mugleramenrubber.html",
                     badge: "Promocja",
-                    seasons: ["jesien", "zima"],
+                    seasons: ["jesien"],
                     available: true,
                     description: "Rubber to intensywna, nowatorska kompozycja z nutą kawy i piżma, lekko rozświetloną cytryną i lawendą. Zapach dla mężczyzn, którzy nie boją się eksperymentów."
                 },
                 {
                     id: 12,
-                    name: "RABANNE PHANTOM EDT", 
-                    price: 110, 
+                    name: "PHANTOM EDT", 
+                    price: 145, 
                     size: "20 ml", 
                     rating: 4.0,
                     img: "rabannephantomedt.jpg",  
                     link: "rabannephantomedt.html",
                     badge: "Promocja",
-                    seasons: ["wiosna"],
+                    seasons: ["wiosna", "lato"],
                     available: true,
                     description: "Phantom to futurystyczny zapach: soczysta cytryna i lawenda spotykają się z kremową wanilią i dymnym drewnem. Dla mężczyzn, którzy podążają własną ścieżką.."
                 },
                 {
                     id: 14,
                     name: "ONE MILION EDT", 
-                    price: 115, 
+                    price: 200, 
                     size: "20 ml", 
                     rating: 4.3,
                     img: "onemilionedt.jpg",  
@@ -1384,41 +1394,41 @@
                     available: true,
                     description: "One Million EDT to dynamiczny, energiczny zapach z nutami cytryny i rumianku, wspartymi przez mocne tło z piżma i tonki. Zapach dla mężczyzn, którzy emanują siłą."
                 },
-                {
-                    id: 15,
-                    name: "ONE MILION EDP", 
-                    price: 115, 
-                    size: "20 ml", 
-                    rating: 4.5,
-                    img: "onemilionedp.jpg",  
-                    link: "onemilionedp.html",
-                    badge: "Promocja",
-                    seasons: ["jesien", "zima"],
-                    available: true,
-                    description: "One Million EDP to bardziej skoncentrowana, intensywniejsza wersja ikonicznego zapachu. Ostre nuty cytryny i kwiatu pomarańczowego idą w parze z mocnym piżmem i korzenną tonką. Dla mężczyzn, którzy chcą być zauważeni."
-                },
-            ],
-            damskie: [],
+             {
+                 id: 15,
+                 name: "ONE MILION EDP", 
+                 price: 200, 
+                 size: "20 ml", 
+                 rating: 4.6,
+                 img: "onemilionedp.jpg",  
+                 link: "onemilionedp.html",
+                 badge: "Promocja",
+                 seasons: ["jesien", "zima"],
+                 available: true,
+                 description: "One Million EDP to bardziej skoncentrowana, intensywniejsza wersja ikonicznego zapachu. Ostre nuty cytryny i kwiatu pomarańczowego idą w parze z mocnym piżmem i korzenną tonką. Dla mężczyzn, którzy chcą być zauważeni."
+             },
+         ],
+         damskie: [],
         };
-        
+     
             window.addEventListener('DOMContentLoaded', function() {
             cart = JSON.parse(localStorage.getItem('cart')) || [];
             updateCartCounter();
         });
-
+    
         window.addEventListener('storage', function(event) {
             if (event.key === 'cart') {
                 // Aktualizuj koszyk gdy zmieni się localStorage
                 cart = JSON.parse(event.newValue || '[]');
                 updateCartCounter();
-
+            
                 // Jeśli koszyk jest aktualnie otwarty, zaktualizuj jego zawartość
                 if (document.getElementById('cart').classList.contains('show')) {
                     showCart();
                 }
             }
         });
-
+    
         // Dodatkowo możesz dodać okresowe sprawdzanie co sekundę (na wypadek, gdyby event storage nie działał)
         setInterval(function() {
             const savedCart = JSON.parse(localStorage.getItem('cart') || '[]');
@@ -1430,7 +1440,7 @@
                 }
             }
         }, 1000);
-
+    
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         let currentCategory = 'meskie';
         let currentSort = '';
@@ -1440,21 +1450,21 @@
         function openQuickView(productId, category) {
             const product = products[category].find(p => p.id === productId);
             if (!product) return;
-
+        
             document.getElementById('quickViewImage').src = product.img;
             document.getElementById('quickViewTitle').textContent = product.name;
             document.getElementById('quickViewPrice').textContent = `${product.price} PLN`;
             document.getElementById('quickViewSize').textContent = product.size;
             document.getElementById('quickViewRating').innerHTML = renderStars(product.rating || 0);
-
+        
             // Ustaw atrybut target="_blank" dla linku
             const detailsLink = document.getElementById('quickViewDetailsLink');
             detailsLink.href = product.link;
             detailsLink.target = "_blank"; // Otwiera w nowej karcie
-
+        
             document.getElementById('quickViewDescription').textContent = product.description || 
                 "Oryginalna kompozycja zapachowa w formie odlewki. Idealne rozwiązanie dla osób, które chcą przetestować zapach przed zakupem pełnowymiarowej wersji.";
-
+        
             // Show modal
             document.getElementById('quickViewModal').style.display = 'flex';
         }
@@ -1488,7 +1498,7 @@
             document.getElementById('sort-desc').classList.remove('active');
             applyFilters();
         }
-
+    
         function resetSeasonFilter() {
             currentSeasonFilter = '';
             document.getElementById('season-none').classList.add('active');
@@ -1506,7 +1516,7 @@
             document.getElementById('sort-desc').classList.toggle('active', sortType === 'price-desc');
             applyFilters();
         }
-
+    
         function filterBySeason(season) {
             if (currentSeasonFilter === season) {
                 resetSeasonFilter();
@@ -1520,7 +1530,7 @@
                 applyFilters();
             }
         }
-
+    
         function applyFilters() {
             let filteredProducts = [...products[currentCategory]];
                 
@@ -1549,19 +1559,19 @@
         
             displayProducts(filteredProducts);
         }
-
+    
         
-
+    
         // Inicjalizacja przy ładowaniu strony
         if (localStorage.getItem('darkTheme') === 'true') {
             document.body.classList.add('dark-mode');
         }
-
-
+    
+    
         function displayProducts(productsToDisplay) {
             const container = document.getElementById('products');
             container.innerHTML = "";
-
+        
             productsToDisplay.forEach((product, index) => {
                 const badge = product.badge ? `<span class="product-badge">${product.badge}</span>` : '';
                 const unavailableLabel = !product.available ? `<div class="unavailable-label">Produkt niedostępny</div>` : '';
@@ -1574,7 +1584,7 @@
                         openQuickView(product.id, currentCategory);
                     }
                 };
-
+            
                 productCard.innerHTML = `
                     ${badge}
                     <div class="product-image-container">
@@ -1598,7 +1608,7 @@
                 container.appendChild(productCard);
             });
         }
-
+    
         function renderStars(rating) {
             if (!rating || rating == 0) return '<div class="no-rating">Brak ocen</div>';
                 
@@ -1623,7 +1633,7 @@
             }
             return `${stars} <span>${rating.toFixed(1)}</span>`;
         }
-
+    
         document.addEventListener('click', (e) => {
     if (e.target.classList.contains('fa-star') || e.target.classList.contains('fa-star-half-alt')) {
         const ratingContainer = e.target.closest('.product-rating');
@@ -1631,23 +1641,23 @@
         const stars = ratingContainer.querySelectorAll('.fa-star, .fa-star-half-alt');
         const clickedIndex = Array.from(stars).indexOf(e.target);
         const newRating = clickedIndex + 1;
-
+    
         // Aktualizacja oceny w danych produktu
         const product = products[currentCategory].find(p => p.id === productId);
         if (product) {
             product.rating = newRating;
-
+        
             // Pobierz istniejące oceny z localStorage
             const ratings = JSON.parse(localStorage.getItem('productRatings') || '{}');
             ratings[productId] = newRating;
             localStorage.setItem('productRatings', JSON.stringify(ratings));
-
+        
             // Zaktualizuj wyświetlanie gwiazdek
             ratingContainer.innerHTML = renderStars(newRating);
         }
     }
-});
-
+    });
+    
         function showCategory(category) {
             currentCategory = category;
             currentSort = '';
@@ -1665,13 +1675,13 @@
             cartContainer.classList.remove('show');
             container.classList.remove('hide');
             container.classList.add('show');
-
+        
             document.getElementById('cart').classList.remove('show');
             document.getElementById('products').classList.add('show');
-
+        
             document.querySelector('.filters').style.display = 'flex';
             document.getElementById('page-title').style.display = 'block';
-
+        
             
             applyFilters();
         }
@@ -1684,9 +1694,9 @@
                 showNotification("Ten produkt jest obecnie niedostępny!");
                 return;
             }
-
+        
             const existingItem = cart.find(item => item.id === product.id && item.size === product.size);
-
+        
             if (existingItem) {
                 existingItem.quantity += 1;
             } else {
@@ -1706,19 +1716,19 @@
                 e.stopPropagation();
                 e.preventDefault();
             }
-
+        
             cart = JSON.parse(localStorage.getItem('cart')) || [];
             const container = document.getElementById('products');
             const cartContainer = document.getElementById('cart');
             const cartContent = document.getElementById('cart-content');
-
+        
             // Ukryj filtry
             document.querySelector('.filters').style.display = 'none';
             document.getElementById('page-title').style.display = 'none';
-
+        
             container.classList.remove('show');
             container.classList.add('hide');
-
+        
             setTimeout(() => {
                 cartContainer.classList.add('show');
             }, 300);
@@ -1736,7 +1746,7 @@
                 `;
                 return;
             } else {
-        
+            
             let html = `
                 <table class="cart-items">
                     <thead>
@@ -1804,7 +1814,7 @@
             cartContent.innerHTML = html;
             }  
         }     
-
+    
         // Dark Mode - przełącznik
         document.getElementById('dark-mode-toggle').addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
@@ -1825,7 +1835,7 @@
             document.body.classList.add('dark-mode');
             document.querySelector('#dark-mode-toggle i').classList.replace('fa-moon', 'fa-sun');
         }
-
+    
         function hideCart() {
             const container = document.getElementById('products');
             const cartContainer = document.getElementById('cart');
@@ -1844,7 +1854,7 @@
                 showNotification("Koszyk jest już pusty!");
                 return;
             }
-
+        
             if (confirm("Czy na pewno chcesz usunąć wszystkie produkty z koszyka?")) {
                 cart = [];
                 localStorage.setItem('cart', JSON.stringify(cart));
@@ -1853,7 +1863,7 @@
                 updateCartCounter();
             }
         }
-
+    
         function updateQuantity(index, change) {
             const newQuantity = cart[index].quantity + change;
             
@@ -1901,7 +1911,7 @@
                 showNotification('Koszyk jest pusty!');
                 return;
             }
-
+        
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             showNotification(`Zamówienie złożone! Suma: ${total.toFixed(2)} PLN`);
             cart = [];
