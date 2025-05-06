@@ -107,6 +107,13 @@
             transition: border-color 0.3s;
         }
 
+        /* Wyłącz strzałki w inputach typu number */
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
         input[type="text"]:focus,
         input[type="email"]:focus {
             border-color: #3a7bd5;
@@ -502,32 +509,30 @@
              }
             }
          /* Loader */
-        #loader-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-
-        #loader {
-            border: 8px solid #f3f3f3;
-            border-top: 8px solid #3a7bd5;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+         #loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+#loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3a7bd5;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
@@ -664,8 +669,7 @@
                         <tr>
                             <th>Zdjęcie</th>
                             <th>Produkt</th>
-                            <th>Pojemność</th>
-                            <th>Cena</th>
+                            <th>Pojemność</th>                           
                             <th>Ilość</th>
                             <th>Suma</th>
                         </tr>
@@ -679,20 +683,8 @@
                     <tr>
                         <td><img src="${item.img}" alt="${item.name}" class="cart-item-img" onclick="window.open('${item.link}', '_blank')"></td>
                         <td style="font-weight: 500;">${item.name}</td>
-                        <td>${item.size}</td>
-                        <td>${item.price} PLN</td>
-                        <td>
-                            <div class="quantity-control">
-                                <button class="quantity-btn minus-btn" onclick="updateQuantity(${index}, -1)">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                                <input type="number" class="quantity-input" value="${item.quantity}" min="1"
-                                       onchange="updateQuantityInput(${index}, this.value)">
-                                <button class="quantity-btn plus-btn" onclick="updateQuantity(${index}, 1)">
-                                    <i class="fas fa-plus"></i>
-                                </button>
-                            </div>
-                        </td>
+                        <td>${item.size}</td>                        
+                        <td>${item.quantity}</td>
                         <td style="font-weight: 600;">${itemTotal.toFixed(2)} PLN</td>
                     </tr>
                 `;
@@ -709,30 +701,30 @@
             cartContent.innerHTML = html;
         }
 
-        // Aktualizacja ilości produktu
         function updateQuantity(index, change) {
-            const newQuantity = cart[index].quantity + change;
-            if (newQuantity < 1) {
-                removeFromCart(index);
-                return;
-            }
-            cart[index].quantity = newQuantity;
-            localStorage.setItem('cart', JSON.stringify(cart));
-            displayCart();
-            updateCartCounter();
-        }
+    // Pobierz aktualny koszyk z localStorage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    // Zaktualizuj ilość
+    const newQuantity = cart[index].quantity + change;
+    
+    // Minimalna ilość to 1
+    if (newQuantity < 1) return;
+    
+    cart[index].quantity = newQuantity;
+    localStorage.setItem('cart', JSON.stringify(cart));
+    displayCart(); // Odśwież widok koszyka
+}
 
-        // Aktualizacja ilości produktu przez input
         function updateQuantityInput(index, value) {
             const newQuantity = parseInt(value);
             if (isNaN(newQuantity) || newQuantity < 1) {
-                displayCart();
+                displayCart(); // Przywróć poprzednią wartość
                 return;
             }
             cart[index].quantity = newQuantity;
             localStorage.setItem('cart', JSON.stringify(cart));
             displayCart();
-            updateCartCounter();
         }
 
         // Usunięcie produktu z koszyka
@@ -792,63 +784,50 @@
 
         // Obsługa formularza
         document.getElementById('orderForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            // Sprawdź, czy koszyk nie jest pusty
-            if (cart.length === 0) {
-                alert("Nie można złożyć pustego zamówienia. Napewno coś Ci się spodoba!");
-                return;
-            }
-            // Pobierz wartości z formularza
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim(); // E-mail kupującego
-            const city = document.getElementById('city').value.trim();
-            const postalCode = document.getElementById('postalCode').value.trim();
-            const street = document.getElementById('street').value.trim();
-            const houseNumber = document.getElementById('houseNumber').value.trim();
-            // Generuj numer zamówienia
-            const orderNumber = generateOrderNumber();
-            // Oblicz całkowitą kwotę zamówienia
-            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            // Przygotuj dane do wysłania
-            const formData = {
-                name: name,
-                email: email,
-                city: city,
-                postalCode: postalCode,
-                street: street,
-                houseNumber: houseNumber,
-                orderNumber: orderNumber,
-                totalAmount: totalAmount.toFixed(2),
-                orderDetails: cart.map(item =>
-                    `${item.name} (${item.size}) - ${item.quantity} x ${item.price} PLN = ${(item.quantity * item.price).toFixed(2)} PLN`
-                ).join('\n')
-            };
-            // Wysyłka e-maila do kupującego
-            emailjs.send("service_cuiw6d3", "template_002e1ki", formData)
-                .then(function(response) {
-                    console.log('E-mail do kupującego został wysłany!', response.status, response.text);
-                })
-                .catch(function(error) {
-                    console.error('Błąd podczas wysyłania e-maila do kupującego:', error);
-                });
-            // Wysyłka e-maila do sprzedawcy (Ciebie)
-            const sellerEmailData = {
-                ...formData, // Kopiuj dane zamówienia
-                email: "perfume0luxe@gmail.com" 
-            };
-            emailjs.send("service_cuiw6d3", "template_002e1ki", sellerEmailData)
-                .then(function(response) {
-                    console.log('E-mail do sprzedawcy został wysłany!', response.status, response.text);
-                    // Pokaż powiadomienie o sukcesie
-                    showNotification("Zamówienie zostało złożone!");
-                    // Przekieruj do strony płatności z numerem zamówienia
-                    window.location.href = `pl.html?orderNumber=${encodeURIComponent(orderNumber)}`;
-                })
-                .catch(function(error) {
-                    console.error('Błąd podczas wysyłania e-maila do sprzedawcy:', error);
-                    alert('Wystąpił błąd podczas przetwarzania zamówienia. Spróbuj ponownie.');
-                });
+    event.preventDefault();
+    
+    if (cart.length === 0) {
+        alert("Nie można złożyć pustego zamówienia. Napewno coś Ci się spodoba!");
+        return;
+    }
+
+    const formData = {
+        name: document.getElementById('name').value.trim(),
+        email: "perfume0luxe@gmail.com", // Tylko do Ciebie
+        city: document.getElementById('city').value.trim(),
+        postalCode: document.getElementById('postalCode').value.trim(),
+        street: document.getElementById('street').value.trim(),
+        houseNumber: document.getElementById('houseNumber').value.trim(),
+        orderNumber: generateOrderNumber(),
+        totalAmount: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2),
+        orderDetails: cart.map(item =>
+            `${item.name} (${item.size}) - ${item.quantity} x ${item.price} PLN = ${(item.quantity * item.price).toFixed(2)} PLN`
+        ).join('\n')
+    };
+
+    showLoader(); // Pokazanie loadera
+
+    emailjs.send("service_cuiw6d3", "template_002e1ki", formData)
+        .then(function(response) {
+            showNotification("Zamówienie zostało złożone!");
+            window.location.href = `pl.html?orderNumber=${encodeURIComponent(formData.orderNumber)}`;
+        })
+        .catch(function(error) {
+            console.error('Błąd:', error);
+            alert('Wystąpił błąd. Spróbuj ponownie.');
+        })
+        .finally(function() {
+            hideLoader(); // Ukrycie loadera
         });
+});
+
+
+function showLoader() {
+    document.getElementById('loader-overlay').style.display = 'flex';
+}
+function hideLoader() {
+    document.getElementById('loader-overlay').style.display = 'none';
+}
 
         // Przełącznik trybu ciemnego/jasnego
         document.getElementById('dark-mode-toggle').addEventListener('click', () => {
@@ -865,8 +844,10 @@
 
         // Sprawdź localStorage przy ładowaniu strony
         if (localStorage.getItem('darkMode') === 'enabled' || !localStorage.getItem('darkMode')) {
-            document.body.classList.add('dark-mode'); // Domyślnie tryb ciemny
-            document.querySelector('#dark-mode-toggle i').classList.replace('fa-moon', 'fa-sun'); // Ustaw ikonę słońca
+            // Zawsze ustawiaj tryb ciemny
+            document.body.classList.add('dark-mode');
+            document.querySelector('#dark-mode-toggle i').classList.replace('fa-moon', 'fa-sun');
+            localStorage.setItem('darkMode', 'enabled');
         } else {
             document.body.classList.remove('dark-mode'); // Tryb jasny
             document.querySelector('#dark-mode-toggle i').classList.replace('fa-sun', 'fa-moon'); // Ustaw ikonę księżyca
