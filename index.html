@@ -9,24 +9,6 @@
     <meta name="keywords" content="perfume luxe, perfumy, odlewki, oryginalne perfumy, tanie perfumy, perfumy na próbę, odlewki perfum, perfumy odlewki">
     <meta name="google-site-verification" content="HQ-rFuAfxiYVLJfrmaV_yzKEsTIYCnN0Pg5HP3XvdP8" />
     <style>
-            @media (max-width: 768px) {
-            #cart {
-                top: 200px; /* Niżej niż header */
-                right: 10px;
-                left: 10px;
-                margin: 0 auto;
-            }
-        
-            #cart .cart-items th,
-            #cart .cart-items td {
-                font-size: 0.85rem;
-                padding: 0.4rem;
-            }
-        
-            #cart .cart-total {
-                font-size: 1rem;
-            }
-        }
         * {
             box-sizing: border-box;
             margin: 0;
@@ -388,7 +370,7 @@
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
             border: 1px solid #e9ecef;
             position: fixed;
-            top: 120px;
+            top: 90px;
             left: 270px;
             right: 2rem;
             opacity: 0;
@@ -420,6 +402,24 @@
             display: block;
             opacity: 1;
             transform: translateX(0);
+        }
+        @media (max-width: 768px) {
+            #cart {
+                top: 200px; /* Niżej niż header */
+                right: 10px;
+                left: 10px;
+                margin: 0 auto;
+            }
+        
+            #cart .cart-items th,
+            #cart .cart-items td {
+                font-size: 0.85rem;
+                padding: 0.4rem;
+            }
+        
+            #cart .cart-total {
+                font-size: 1rem;
+            }
         }
         #products {
             transition: opacity 0.3s ease;
@@ -1595,6 +1595,39 @@
                 margin-bottom: 10px;
             }
         }
+        /* Animacje przejścia między zakładkami */
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideOutLeft {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+        }
+        
+        /* Klasy do zarządzania widocznością */
+        .category.active {
+            display: block;
+            animation: slideInRight 0.5s ease-in-out;
+        }
+        
+        .category.hidden {
+            display: none;
+            animation: slideOutLeft 0.5s ease-in-out;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -2329,7 +2362,15 @@
                 updatePageTitle();
             }, 300);
         }
-                
+              
+        function debounce(func, delay) {
+            let timeoutId;
+            return function (...args) {
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(() => func.apply(this, args), delay);
+            };
+        }
+
         function clearCart() {
             if (cart.length === 0) {
                 showNotification("Koszyk jest już pusty!");
@@ -2514,6 +2555,13 @@
         window.addEventListener("load", () => {
             cycleCounter = 0; // Reset licznika
             nextStep(); // Rozpocznij od pierwszej frazy
+        });
+        document.querySelectorAll('.category[data-category]').forEach(categoryElement => {
+            categoryElement.addEventListener('click', debounce(function (e) {
+                e.preventDefault();
+                const category = this.getAttribute('data-category');
+                showCategory(category, e);
+            }, 100)); // Ograniczenie do 300ms
         });
 
         showCategory('meskie');
