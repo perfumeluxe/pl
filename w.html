@@ -533,6 +533,37 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+          #dynamic-text {
+            display: inline-block;
+            vertical-align: top;
+            margin-left: 8px;
+            width: max-content;
+            color: #fff;
+            font-weight: normal;
+            border-right: 2px solid #fff;
+            animation: blink-caret 0.75s step-end infinite;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: white; }
+        }
+
+        .typing {
+            animation: typing 3s steps(20, end) forwards, blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 150px; }
+        }
+        @media (max-width: 768px) {
+            #dynamic-text {
+                font-size: 0.9rem; 
+            }
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
@@ -542,12 +573,13 @@
         <div id="loader"></div>
     </div>
     <header>
-        <div class="header-overlay"></div>
-        <h1><i class="fas fa-spray-can"></i> Perfume Luxe</h1>
-        <button id="dark-mode-toggle" class="dark-mode-btn">
-            <i class="fas fa-moon"></i>
-        </button>
-    </header>
+            <h1><i class="fas fa-spray-can"></i>
+                <span id="dynamic-text"></span>
+            </h1>
+            <button id="dark-mode-toggle" class="dark-mode-btn">
+                <i class="fas fa-moon"></i>
+            </button>
+        </header>
     
     <div class="container">
         <div class="main-content">
@@ -852,6 +884,73 @@ function hideLoader() {
             document.body.classList.remove('dark-mode'); // Tryb jasny
             document.querySelector('#dark-mode-toggle i').classList.replace('fa-sun', 'fa-moon'); // Ustaw ikonę księżyca
         }
+
+        const dynamicText = document.getElementById("dynamic-text");
+        const phrases = ["Perfume Luxe", "Odlewki Perfum!", "Perfumy na każdą porę roku!", "Perfumy męskie", "Perfumy w okazyjnych cenach!", "Perfumy dla każdego!"];
+        
+        let lastRandomIndex = null;
+        
+        function getRandomPhraseIndex() {
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * phrases.length);
+            } while (
+                randomIndex === 0 || // pomijaj "Perfume Luxe"
+                randomIndex === lastRandomIndex // nie powtarzaj ostatniej frazy
+            );
+            lastRandomIndex = randomIndex;
+            return randomIndex;
+        }
+
+        function animateText(forceIndex = null) {
+            const phraseIndex = forceIndex !== null ? forceIndex : getRandomPhraseIndex();
+            const phrase = phrases[phraseIndex];
+            let charIndex = 0;
+
+            const typeInterval = setInterval(() => {
+                if (charIndex <= phrase.length) {
+                    dynamicText.textContent = phrase.slice(0, charIndex);
+                    charIndex++;
+                } else {
+                    clearInterval(typeInterval);
+
+                    setTimeout(() => {
+                        const deleteInterval = setInterval(() => {
+                            if (charIndex >= 0) {
+                                dynamicText.textContent = phrase.slice(0, charIndex);
+                                charIndex--;
+                            } else {
+                                clearInterval(deleteInterval);
+                                setTimeout(nextStep, 200); // Pokaż następną frazę
+                            }
+                        }, 150);
+                    }, 4500); // Czas pokazania pełnej frazy
+                }
+            }, 100);
+        }
+
+        let cycleCounter = 0;
+
+        function nextStep() {
+            cycleCounter++;
+        
+            if (cycleCounter === 1) {
+                // Pierwsze uruchomienie - tylko "Perfume Luxe"
+                animateText(0);
+            } else if (cycleCounter % 2 === 0) {
+                // Co drugi cykl - losowa fraza
+                animateText();
+            } else {
+                // W pozostałych przypadkach - "Perfume Luxe"
+                animateText(0);
+            }
+        }
+
+        // Uruchom animację po załadowaniu strony
+        window.addEventListener("load", () => {
+            cycleCounter = 0; // Reset licznika
+            nextStep(); // Rozpocznij od pierwszej frazy
+        });
 
         // Wyświetl zawartość koszyka przy ładowaniu strony
         displayCart();

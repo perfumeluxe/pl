@@ -112,10 +112,43 @@
                 font-size: 2.5rem;
             }
         }
+        #dynamic-text {
+            display: inline-block;
+            vertical-align: top;
+            margin-left: 8px;
+            width: max-content;
+            color: #fff;
+            font-weight: normal;
+            border-right: 2px solid #fff;
+            animation: blink-caret 0.75s step-end infinite;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: white; }
+        }
+
+        .typing {
+            animation: typing 3s steps(20, end) forwards, blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 150px; }
+        }
+        @media (max-width: 768px) {
+            #dynamic-text {
+                font-size: 0.9rem; 
+            }
+        }
+        
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
+    
     <div class="thank-you-container">
         <i class="fas fa-check-circle"></i>
         <h1>Dziękujemy za zakupy!</h1>
