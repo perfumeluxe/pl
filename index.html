@@ -1628,6 +1628,123 @@
             display: none;
             animation: slideOutLeft 0.5s ease-in-out;
         }
+        .compare-btn {
+            margin-top: 10px;
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        .compare-btn:hover {
+            background: #5a6268;
+        }
+.comparison-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.comparison-table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+        .compare-counter {
+            background: #ff4d4d;
+            color: white;
+            border-radius: 50%;
+            font-size: 0.8rem;
+            padding: 3px 8px;
+            margin-left: 0.3rem;
+            position: relative;
+            font-weight: bold;
+        }
+        .nowrap-text {
+            white-space: nowrap;
+        }
+
+.product-thumbnail img {
+    display: block;
+    margin: 0 auto;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 5px;
+}
+
+.product-thumbnail p {
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.remove-compare-btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.remove-compare-btn:hover {
+    background: #c82333;
+    transform: translateY(-1px);
+}
+
+.comparison-header {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.product-thumbnails {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.product-thumbnail {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.quick-view-content {
+    background: #1a1a1a;
+    color: #e0e0e0;
+}
+
+.quick-view-content h2 {
+    color: #e0e0e0;
+    margin-bottom: 15px;
+}
+
+.quick-view-content .comparison-table table {
+    color: #e0e0e0;
+}
+
+.quick-view-content .comparison-table th {
+    background-color: #343a40;
+    color: #e0e0e0;
+}
+
+.quick-view-content .comparison-table td {
+    color: #e0e0e0;
+}
+
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -1680,6 +1797,11 @@
                   <div class="category" data-category="damskie">
                       <i class="fas fa-female"></i> Perfumy Damskie
                   </div>
+                  <div class="category" onclick="showCompareModal()">
+                        <i class="fas fa-balance-scale"></i>
+                        <span class="nowrap-text">Porównaj produkty</span>
+                        <span id="compare-counter" class="compare-counter" style="display: none;">0</span>
+                    </div>
                   <div class="category" id="cart-button" >
                       <i class="fas fa-shopping-cart"></i> Koszyk 
                       <span id="cart-counter" class="cart-counter" style="display: none;">0</span>
@@ -1738,32 +1860,63 @@
                     badge: "Bestseller",
                     seasons: ["wiosna", "lato"],
                     available: true,
-                    description: "Eros to uwodzicielska kompozycja Versace łącząca świeże nuty mięty i zielonego jabłka z ciepłym akcentem wanilii i drewna. Idealny dla mężczyzn, którzy lubią przyciągać uwagę."
+                    description: "Eros to uwodzicielska kompozycja Versace łącząca świeże nuty mięty i zielonego jabłka z ciepłym akcentem wanilii i drewna. Idealny dla mężczyzn, którzy lubią przyciągać uwagę.",
+                    family: "Drzewno-orientalna",
+                    headNotes: "Mięta, zielone jabłko, cytryna, mandarynka",
+                    heartNotes: "Ambroksan, geranium, fasola tonka",
+                    baseNotes: "Drzewo sandałowe, paczula, mech dębowy, wanilia",
+                    type: "Eau de Parfum",
+                    sweetness: "8/10",
+                    bitterness: "6/10",
+                    freshness: "7/10",
+                    intensity: "9/10",
+                    duration: "8/10"
                 },
                 { 
                     id: 2,
-                    name: "VERSACE EROS ENERGY EDP", 
-                    price: 115, 
-                    size: "20 ml", 
+                    name: "VERSACE EROS ENERGY EDP",
+                    price: 115,
+                    size: "20 ml",
                     rating: 4.6,
-                    img: "versaceerosenergy.jpg", 
+                    img: "versaceerosenergy.jpg",
                     link: "versaceerosenergy.html",
                     badge: "Bestseller",
                     seasons: ["lato"],
                     available: true,
+                    family: "Drzewno-orientalna",
+                    headNotes: "Bergamotka, czerwona pomarańcza, owoce jałowca",
+                    heartNotes: "Ambroksan, kardamon, nuty wodne",
+                    baseNotes: "Wetiwer, drzewo guajakowe, bursztyn",
+                    type: "Eau de Parfum",
+                    sweetness: "7/10",
+                    bitterness: "5/10",
+                    freshness: "8/10",
+                    intensity: "9/10",
+                    duration: "7/10",
                     description: "Eros Energy to dynamiczna, bardziej energiczna odsłona klasycznego Erosa. Otwiera się soczystą mandarynką i cytryną, by przejść w intensywne nuty wanilii i tonki – idealny na letnie wieczory pełne energii."
                 },
                 { 
+
                     id: 18,
-                    name: "VERSACE POUR HOMME DYLAN BLUE", 
-                    price: 120, 
-                    size: "20 ml", 
+                    name: "VERSACE POUR HOMME DYLAN BLUE",
+                    price: 120,
+                    size: "20 ml",
                     rating: 4.8,
-                    img: "versacedylanblue.jpg", 
+                    img: "versacedylanblue.jpg",
                     link: "versacedylanblue.html",
                     badge: "Bestseller",
                     seasons: ["wiosna", "jesien"],
                     available: true,
+                    family: "Drzewno-aromatyczno-orientalne",
+                    headNotes: "Bergamotka, cytryna",
+                    heartNotes: "Drzewo gwajakowe, lawenda",
+                    baseNotes: "Piżmo, drzewo sandałowe, ambra",
+                    type: "Eau de Parfum",
+                    sweetness: "7/10",
+                    bitterness: "4/10",
+                    freshness: "6/10",
+                    intensity: "8/10",
+                    duration: "8/10",
                     description: "Dylan Blue to elegancki i intensywny zapach dla mężczyzn. Otwiera się soczystym grejpfrutem i kwiatem pomarańczowym, a końcowe nuty piżma i tonki dodają głębi i pewności siebie. Perfekt na wieczorne spotkania."
                 },
                 { 
@@ -1777,8 +1930,17 @@
                     badge: "Nowość",
                     seasons: ["jesien", "zima"],
                     available: true,
-                    description: "VALENTINO UOMO BORN IN ROMA EDT – intensywny, zmysłowy i pełen pasji. Świetlista bergamotka i mięta przechodzą w głęboki, słodki akord wanilii bourbon i kawy, by zakończyć się ciepłem drewna. Dla mężczyzn, którzy lubią wyróżniać się stylem i pewności siebie."
-
+                    description: "VALENTINO UOMO BORN IN ROMA EDT – intensywny, zmysłowy i pełen pasji. Świetlista bergamotka i mięta przechodzą w głęboki, słodki akord wanilii bourbon i kawy, by zakończyć się ciepłem drewna. Dla mężczyzn, którzy lubią wyróżniać się stylem i pewności siebie.",
+                    family: "Słodko-korzenni",
+                    headNotes: "Bergamotka, mięta, gorzka pomarańcza",
+                    heartNotes: "Kawowy akord, kakao",
+                    baseNotes: "Wanilia bourbon, drzewo sandałowe",
+                    type: "Eau de Toilette",
+                    sweetness: "7/10",
+                    bitterness: "4/10",
+                    freshness: "6.5/10",
+                    intensity: "8/10",
+                    duration: "8/10"                               
                 },
                 { 
                     id: 4,
@@ -1803,7 +1965,17 @@
                     link: "jeanpaulgaultierlemaleelixir.html",
                     seasons: ["jesien", "zima"],
                     available: true,
-                    description: "Le Male Elixir to bogata, słodka kompozycja z nutą prażonej tonki i kakao. Aksamitna wanilia i korzenna tonka tworzą zmysłowy, intensywny zapach idealny na romantyczne wieczory."
+                    description: "Le Male Elixir to bogata, słodka kompozycja z nutą prażonej tonki i kakao. Aksamitna wanilia i korzenna tonka tworzą zmysłowy, intensywny zapach idealny na romantyczne wieczory.",
+                    family: "Orientalno-korzenno-waniliowa",
+                    headNotes: "Kardamon, lawenda",
+                    heartNotes: "Wanilia, orzech laskowy",
+                    baseNotes: "Drewno sandałowe, paczula, piżmo",
+                    type: "Eau de Parfum",
+                    sweetness: "9/10",
+                    bitterness: "3/10",
+                    freshness: "5/10",
+                    intensity: "10/10",
+                    duration: "10/10"
                 },
                 {
                     id: 17,
@@ -1815,7 +1987,18 @@
                     link: "jeanpaulgaultierultramale.html",
                     seasons: ["jesien", "zima"],
                     available: true,
-                    description: "Ultra Male to nowoczesna, dynamiczna wersja legendarnego Le Male'a. Soczysty grejpfrut i lawenda spotykają się z mocnym piżmem i tonką – zapach dla mężczyzn, którzy chcą dominować."
+                    description: "Ultra Male to nowoczesna, dynamiczna wersja legendarnego Le Male'a. Soczysty grejpfrut i lawenda spotykają się z mocnym piżmem i tonką – zapach dla mężczyzn, którzy chcą dominować.",
+                    family: "Słodko-korzenni",
+                    headNotes: "Zielona mandarynka, cytryna",
+                    heartNotes: "Kwiat pomarańczy, kardamon",
+                    baseNotes: "Wanilia, tonka, piżmo",
+                    type: "Eau de Parfum",
+                    sweetness: "7.5/10",
+                    bitterness: "5/10",
+                    freshness: "6.5/10",
+                    intensity: "9/10",
+                    duration: "8.5/10"
+
                 },
                 {
                     id: 19,
@@ -1827,7 +2010,17 @@
                     link: "creedaventusedp.html",
                     seasons: ["wiosna", "jesien"],
                     available: true,
-                    description: "CREED Aventus EDP to elegancki, męski zapach łączący świeżość cytrusów z ciepłem lawendy, piżmu i tonki. To nowoczesna wersja Le Male'a – subtelna, lecz wyrazista, idealna na co dzień i nie tylko."
+                    description: "CREED Aventus EDP to elegancki, męski zapach łączący świeżość cytrusów z ciepłem lawendy, piżmu i tonki. To nowoczesna wersja Le Male'a – subtelna, lecz wyrazista, idealna na co dzień i nie tylko.",
+                    family: "Drzewno-aromatyczno-oreintalne",
+                    headNotes: "Ananas, jabłko, bergamotka, nuta czarnej porzeczki",
+                    heartNotes: "Jasny balsam z Breiłu, żołty piżmo",
+                    baseNotes: "Vetiver, drzewo sandałowe, ambra, dymna nuta skóry",
+                    type: "Eau de Parfum",
+                    sweetness: "6/10",
+                    bitterness: "4/10",
+                    freshness: "7/10",
+                    intensity: "9/10",
+                    duration: "10/10"
                 },
                 {
                     id: 6,
@@ -1840,7 +2033,17 @@
                     badge: "Promocja",
                     seasons: ["jesien", "zima"],
                     available: true,
-                    description : "Intensely to intensywna wersja Stronger With You. Bogata wanilia i karmel spotykają się z mocnym piżmem i korzennym kardamonem – zapach pełen pasji i pewności siebie."
+                    description : "Intensely to intensywna wersja Stronger With You. Bogata wanilia i karmel spotykają się z mocnym piżmem i korzennym kardamonem – zapach pełen pasji i pewności siebie.",
+                    family: "Orientalne, Słodko-korzenno-drzewne",
+                    headNotes: "Zielona mandarynka, nuty cytrusowe",
+                    heartNotes: "Kardamon, kwiaty pomarańczy",
+                    baseNotes: "Ciemny karmel, wanilia, piżmo, tonka",
+                    type: "Eau de Parfum",
+                    sweetness: "10/10",
+                    bitterness: "4/10",
+                    freshness: "6/10",
+                    intensity: "8/10",
+                    duration: "8/10"
                 },
                 {
                     id: 7,
@@ -1853,7 +2056,17 @@
                     badge: "Promocja",
                     seasons: ["jesien", "zima"],
                     available: true,
-                    description: "Only to wyjątkowa, bardziej koncentrowana wersja kultowego zapachu Armani. Zmysłowa wanilia i korzenna nuta tworzą ciepły, uroczy zapach idealny na zimowe randki."
+                    description: "Only to wyjątkowa, bardziej koncentrowana wersja kultowego zapachu Armani. Zmysłowa wanilia i korzenna nuta tworzą ciepły, uroczy zapach idealny na zimowe randki.",
+                    family: "Słodko-korzenno-drzewna",
+                    headNotes: "Zielona mandarynka, cytryna",
+                    heartNotes: "Kardamon, kwiaty pomarańczy",
+                    baseNotes: "Wanilia, piżmo, tonka",
+                    type: "Eau de Parfum",
+                    sweetness: "7.5/10",
+                    bitterness: "4/10",
+                    freshness: "6/10",
+                    intensity: "8/10",
+                    duration: "8/10"
                 },
                 {
                     id: 16,
@@ -1866,7 +2079,17 @@
                     badge: "Promocja",
                     seasons: ["wiosna", "lato"],
                     available: true,
-                    description: "Profondo to ciemniejsza, bardziej zmysłowa wersja Acqua di Gio. Słony balsam morski spotyka się z cytryną i cedrem, by zakończyć się głębokimi nutami myrry i kadzidła – idealny na eleganckie spotkania."
+                    description: "Profondo to ciemniejsza, bardziej zmysłowa wersja Acqua di Gio. Słony balsam morski spotyka się z cytryną i cedrem, by zakończyć się głębokimi nutami myrry i kadzidła – idealny na eleganckie spotkania.",
+                    family: "Wodno-drzewno-muksy",
+                    headNotes: "Ozonowe akcenty, woda morska",
+                    heartNotes: "Lawenda, pelargonii",
+                    baseNotes: "Drzewo sosnowe, musk, ambra",
+                    type: "Eau de Parfum",
+                    sweetness: "4/10",
+                    bitterness: "3/10",
+                    freshness: "10/10",
+                    intensity: "7/10",
+                    duration: "7.5/10"
                 },
                 {
                     id: 8,
@@ -1879,7 +2102,18 @@
                     badge: "Promocja",
                     seasons: ["wiosna", "jesien", "zima"],
                     available: true,
-                    description: "Bad Boy to buntowniczy, dynamiczny zapach. Ostra nuta pieprzu i bergamotu idzie w parze z miękką wełną i drzewnym akcentem – dźwięk dla mężczyzn łamiących reguły."
+                    description: "Bad Boy to buntowniczy, dynamiczny zapach. Ostra nuta pieprzu i bergamotu idzie w parze z miękką wełną i drzewnym akcentem – dźwięk dla mężczyzn łamiących reguły.",
+                    family: "Drzewno-aromatyczno-orientale",
+                    headNotes: "Bergamotka, grejpfrut, pieprz",
+                    heartNotes: "Kwiat pomarańczy, lawenda",
+                    baseNotes: "Piżmo, wełna, drewno sandałowe",
+                    type: "Eau de Toilette",
+                    sweetness: "7/10",
+                    bitterness: "5/10",
+                    freshness: "6/10",
+                    intensity: "8/10",
+                    duration: "8/10"
+
                 },
                 {
                     id: 9,
@@ -1892,19 +2126,39 @@
                     badge: "Promocja",
                     seasons: ["wiosna", "lato", "jesien"],
                     available: true,
-                    description: "Cobalt to elektryzująca wersja Bad Boya – soczysty grejpfrut i ostre pieprzowe nuty są wsparte przez głębokie piżmo i wetiwer. Zapach dla mężczyzn świecących własnym światłem."
+                    description: "Cobalt to elektryzująca wersja Bad Boya – soczysty grejpfrut i ostre pieprzowe nuty są wsparte przez głębokie piżmo i wetiwer. Zapach dla mężczyzn świecących własnym światłem.",
+                    family: "Drzewno-aromatyczno-orientale",
+                    headNotes: "Grejpfrut, pieprz",
+                    heartNotes: "Kwiat pomarańczy, lawenda",
+                    baseNotes: "Piżmo, wełna, wetiwer",
+                    type: "Eau de Parfum",
+                    sweetness: "7.5/10",
+                    bitterness: "5/10",
+                    freshness: "6.5/10",
+                    intensity: "9/10",
+                    duration: "8.5/10"
                 },
                 {
                     id: 10,
-                    name: "YVES SAINT LAURENT EDP", 
-                    price: 185, 
-                    size: "20 ml",  
-                    rating: 4.6,
-                    img: "ysledp.jpg", 
+                    name: "YSL Y EDP",
+                    price: 185,
+                    size: "20 ml",
+                    rating: 4.7,
+                    img: "ysledp.jpg",
                     link: "ysledp.html",
-                    badge: "Promocja",
-                    seasons: ["wiosna", "lato", "zima"],
+                    badge: "Bestseller",
+                    seasons: ["wiosna", "lato", "jesien"],
                     available: true,
+                    family: "Drzewno-orientalne",
+                    headNotes: "Bergamotka, jabłko Granny Smith",
+                    heartNotes: "Drzewo gwajakowe",
+                    baseNotes: "Ambroxan, nuta drewna",
+                    type: "Eau de Parfum",
+                    sweetness: "6.5/10",
+                    bitterness: "5.5/10",
+                    freshness: "8/10",
+                    intensity: "7.5/10",
+                    duration: "8/10",
                     description: "Y EDP to nowoczesny, elegancki zapach z nutami jabłka i bergamotki, które płynnie przechodzą w gładki akcent drzewa gwajakowego i intensywny ambroxan. Dla mężczyzn, którzy łączą energię z wyrafinowaniem."
                 },
                 {
@@ -1917,7 +2171,17 @@
                     link: "bleudechanel.html",
                     seasons: ["wiosna", "lato"],
                     available: true,
-                    description :"Bleu de Chanel to ponadczasowy, elegancki zapach z rześką nutą cytrusów i mięty, który przechodzi w ciepłe, drzewne tony kadzidła i piżma. Dla mężczyzn z charakterem."
+                    description :"Bleu de Chanel to ponadczasowy, elegancki zapach z rześką nutą cytrusów i mięty, który przechodzi w ciepłe, drzewne tony kadzidła i piżma. Dla mężczyzn z charakterem.",
+                    family: "Cytrusowo-drzewna",
+                    headNotes: "Bergamotka, mięta, cytryna",
+                    heartNotes: "Kadzidło, rozmaryn",
+                    baseNotes: "Drzewo sandałowe, piżmo, wanilia",
+                    type: "Eau de Toilette",
+                    sweetness: "4/10",
+                    bitterness: "6/10",
+                    freshness: "7/10",
+                    intensity: "7/10",
+                    duration: "8/10"
                 },
                 {
                     id: 13,
@@ -1930,47 +2194,87 @@
                     badge: "Promocja",
                     seasons: ["jesien"],
                     available: true,
-                    description: "Rubber to intensywna, nowatorska kompozycja z nutą kawy i piżma, lekko rozświetloną cytryną i lawendą. Zapach dla mężczyzn, którzy nie boją się eksperymentów."
+                    description: "Rubber to intensywna, nowatorska kompozycja z nutą kawy i piżma, lekko rozświetloną cytryną i lawendą. Zapach dla mężczyzn, którzy nie boją się eksperymentów.",
+                    family: "Drzewno-aromatyczno-muksy",
+                    headNotes: "Cytryna, rozmaryn",
+                    heartNotes: "Kwiat pomarańczy, akord gumowy",
+                    baseNotes: "Piżmo, drzewo sandałowe, tonka",
+                    type: "Eau de Toilette",
+                    sweetness: "6.5/10",
+                    bitterness: "5/10",
+                    freshness: "6/10",
+                    intensity: "8.5/10",
+                    duration: "8/10"
                 },
                 {
                     id: 12,
-                    name: "PHANTOM EDT", 
-                    price: 145, 
-                    size: "20 ml", 
+                    name: "PHANTOM EDT",
+                    price: 145,
+                    size: "20 ml",
                     rating: 4.0,
-                    img: "rabannephantomedt.jpg",  
+                    img: "rabannephantomedt.jpg",
                     link: "rabannephantomedt.html",
                     badge: "Promocja",
                     seasons: ["wiosna", "lato"],
                     available: true,
-                    description: "Phantom to futurystyczny zapach: soczysta cytryna i lawenda spotykają się z kremową wanilią i dymnym drewnem. Dla mężczyzn, którzy podążają własną ścieżką.."
+                    description: "Phantom to futurystyczny zapach: soczysta cytryna i lawenda spotykają się z kremową wanilią i dymnym drewnem. Dla mężczyzn, którzy podążają własną ścieżką.",
+                    family: "Drzewno-aromatyczno-orientale",
+                    headNotes: "Cytryna, nuta wodna",
+                    heartNotes: "Lawenda, akwatyczne nuty",
+                    baseNotes: "Wanilia, drzewo sandałowe, dym",
+                    type: "Eau de Toilette",
+                    sweetness: "6.5/10",
+                    bitterness: "4/10",
+                    freshness: "7.5/10",
+                    intensity: "8/10",
+                    duration: "8/10"
                 },
                 {
                     id: 14,
-                    name: "ONE MILION EDT", 
-                    price: 200, 
-                    size: "20 ml", 
+                    name: "ONE MILION EDT",
+                    price: 200,
+                    size: "20 ml",
                     rating: 4.3,
-                    img: "onemilionedt.jpg",  
+                    img: "onemilionedt.jpg",
                     link: "onemilionedt.html",
                     badge: "Promocja",
                     seasons: ["jesien", "zima"],
                     available: true,
+                    family: "Słodko-korzenno-drzewny",
+                    headNotes: "Mandarynka, grejpfrut",
+                    heartNotes: "Kwiat pomarańczy, lawenda",
+                    baseNotes: "Wanilia, tonka, drzewo sandałowe",
+                    type: "Eau de Toilette",
+                    sweetness: "7/10",
+                    bitterness: "3/10",
+                    freshness: "6/10",
+                    intensity: "9/10",
+                    duration: "8.5/10",
                     description: "One Million EDT to dynamiczny, energiczny zapach z nutami cytryny i rumianku, wspartymi przez mocne tło z piżma i tonki. Zapach dla mężczyzn, którzy emanują siłą."
                 },
-             {
-                 id: 15,
-                 name: "ONE MILION EDP", 
-                 price: 200, 
-                 size: "20 ml", 
-                 rating: 4.6,
-                 img: "onemilionedp.jpg",  
-                 link: "onemilionedp.html",
-                 badge: "Promocja",
-                 seasons: ["jesien", "zima"],
-                 available: true,
-                 description: "One Million EDP to bardziej skoncentrowana, intensywniejsza wersja ikonicznego zapachu. Ostre nuty cytryny i kwiatu pomarańczowego idą w parze z mocnym piżmem i korzenną tonką. Dla mężczyzn, którzy chcą być zauważeni."
-             },
+                {
+                    id: 15,
+                    name: "ONE MILION EDP",
+                    price: 200,
+                    size: "20 ml",
+                    rating: 4.6,
+                    img: "onemilionedp.jpg",
+                    link: "onemilionedp.html",
+                    badge: "Promocja",
+                    seasons: ["jesien", "zima"],
+                    available: true,
+                    description: "One Million EDP to bardziej skoncentrowana, intensywniejsza wersja ikonicznego zapachu. Ostre nuty cytryny i kwiatu pomarańczowego idą w parze z mocnym piżmem i korzenną tonką. Dla mężczyzn, którzy chcą być zauważeni.",
+                    family: "Słodko-korzenno-drzewny",
+                    headNotes: "Mandarynka, grejpfrut",
+                    heartNotes: "Kwiat pomarańczy, nuta różana",
+                    baseNotes: "Wanilia, drzewo sandałowe, tonka",
+                    type: "Eau de Parfum",
+                    sweetness: "7/10",
+                    bitterness: "4/10",
+                    freshness: "6/10",
+                    intensity: "9/10",
+                    duration: "8.5/10"
+                }
          ],
          damskie: [],
         };
@@ -2153,6 +2457,9 @@
                                     onclick="${product.available ? `addToCart(${product.id}, '${currentCategory}', event)` : 'return false'}" 
                                     ${!product.available ? 'disabled' : ''}>
                                 <i class="fas fa-cart-plus"></i> ${product.available ? 'Dodaj do koszyka' : 'Niedostępny'}
+                            </button>
+                            <button class="compare-btn" onclick="addToCompare(${product.id}, '${currentCategory}', event)">
+                                <i class="fas fa-balance-scale"></i> Porównaj
                             </button>
                         </div>
                     </div>
@@ -2575,6 +2882,168 @@
                 showCategory(category, e);
             }, 100)); // Ograniczenie do 300ms
         });
+
+        let comparedProducts = [];
+
+function addToCompare(productId, category, event) {
+    event.stopPropagation();
+    const product = products[category].find(p => p.id === productId);
+    if (!product) return;
+
+    // Sprawdź, czy produkt już jest w liście
+    const alreadyAdded = comparedProducts.some(p => p.id === productId && p.category === category);
+    if (alreadyAdded) {
+        showNotification("Ten produkt jest już w porównaniu!");
+        return;
+    }
+
+    comparedProducts.push({ ...product });
+    updateCompareCounter(); // Aktualizuj licznik
+    showNotification(`Dodano "${product.name}" do porównania.`);
+}
+
+function showCompareModal() {
+    if (comparedProducts.length < 2) {
+        showNotification("Wybierz co najmniej 2 produkty do porównania.");
+        return;
+    }
+    let html = `
+        <div class="quick-view-content">
+            <span class="quick-view-close" onclick="closeQuickView()">&times;</span>
+            <h2 style="text-align:center;">Porównanie produktów</h2>
+            <!-- Nagłówek tabeli -->
+            <div class="comparison-header">
+                <div class="product-thumbnails">
+                    ${comparedProducts.map(product => `
+                        <div class="product-thumbnail">
+                            <img src="${product.img}" alt="${product.name}" style="width: 80px; height: 80px; border-radius: 5px;">
+                            <p>${product.name}</p>
+                            <button class="remove-compare-btn" onclick="removeFromCompare(${product.id})">
+                                <i class="fas fa-times"></i> Usuń
+                            </button>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+    `;
+    comparedProducts.forEach((_, index) => {
+        html += `<th>${comparedProducts[index].name}</th>`;
+    });
+    html += `
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Rodzina zapachowa:</td>
+    `;
+    comparedProducts.forEach(product => {
+        html += `<td>${product.family || 'Brak danych'}</td>`;
+    });
+    html += `
+                        </tr>
+                        <tr>
+                            <td>Nuty głowy:</td>
+    `;
+    comparedProducts.forEach(product => {
+        html += `<td>${product.headNotes || 'Brak danych'}</td>`;
+    });
+    html += `
+                        </tr>
+                        <tr>
+                            <td>Nuty serca:</td>
+    `;
+    comparedProducts.forEach(product => {
+        html += `<td>${product.heartNotes || 'Brak danych'}</td>`;
+    });
+    html += `
+                        </tr>
+                        <tr>
+                            <td>Nuty bazy:</td>
+    `;
+    comparedProducts.forEach(product => {
+        html += `<td>${product.baseNotes || 'Brak danych'}</td>`;
+    });
+    html += `
+                        </tr>
+                        <tr>
+                            <td>Typ:</td>
+    `;
+    comparedProducts.forEach(product => {
+        html += `<td>${product.type || 'Brak danych'}</td>`;
+    });
+    html += `
+                        </tr>
+                        <tr>
+                            <td>Słodycz:</td>
+    `;
+    comparedProducts.forEach(product => {
+        html += `<td>${product.sweetness || 'Brak danych'}</td>`;
+    });
+    html += `
+                        </tr>
+                        <tr>
+                            <td>Gorycz:</td>
+    `;
+    comparedProducts.forEach(product => {
+        html += `<td>${product.bitterness || 'Brak danych'}</td>`;
+    });
+    html += `
+                        </tr>
+                        <tr>
+                            <td>Świeżość:</td>
+    `;
+    comparedProducts.forEach(product => {
+        html += `<td>${product.freshness || 'Brak danych'}</td>`;
+    });
+    html += `
+                        </tr>
+                        <tr>
+                            <td>Intensywność:</td>
+    `;
+    comparedProducts.forEach(product => {
+        html += `<td>${product.intensity || 'Brak danych'}</td>`;
+    });
+    html += `
+                        </tr>
+                        <tr>
+                            <td>Długotrwałość:</td>
+    `;
+    comparedProducts.forEach(product => {
+        html += `<td>${product.duration || 'Brak danych'}</td>`;
+    });
+    html += `
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    `;
+    document.getElementById('quickViewModal').innerHTML = html;
+    document.getElementById('quickViewModal').style.display = 'flex';
+}
+
+function removeFromCompare(productId) {
+    const productIndex = comparedProducts.findIndex(p => p.id === productId);
+    if (productIndex !== -1) {
+        comparedProducts.splice(productIndex, 1);
+        updateCompareCounter(); // Aktualizuj licznik
+        showNotification(`Usunięto produkt z porównania.`);
+        showCompareModal(); // Odśwież modal
+    } else {
+        showNotification("Produkt nie został znaleziony w porównaniu.", "error");
+    }
+}
+
+function updateCompareCounter() {
+    const counter = document.getElementById('compare-counter');
+    counter.textContent = comparedProducts.length;
+    counter.style.display = comparedProducts.length > 0 ? 'inline-block' : 'none';
+}
 
         showCategory('meskie');
         updateCartCounter();
