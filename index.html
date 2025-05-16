@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="icon" href="p.jpg">
     <title>Perfume Luxe</title>
     <meta name="description" content="Kup oryginalne perfumy na odlewki.">
@@ -19,6 +19,8 @@
             background: url('bp.jpg') no-repeat center center fixed;
             background-size: cover;
             color: #333;
+            overflow-x: hidden;
+            touch-action: manipulation;
         }
 
         header {
@@ -1744,7 +1746,155 @@
 .quick-view-content .comparison-table td {
     color: #e0e0e0;
 }
+/* Mobile-first styles */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.3rem;
+        text-align: center;
+    }
 
+    .sidebar {
+        width: 100%;
+        height: auto;
+        padding: 15px;
+    }
+
+    .category {
+        width: calc(50% - 10px);
+        display: inline-block;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+
+    .main-content {
+        padding: 1rem;
+    }
+
+    #cart {
+        left: 15px;
+        right: 15px;
+        top: 70px;
+    }
+
+    .product-card {
+        min-width: 0 !important;
+        max-width: 100%;
+    }
+
+    .product-image-container {
+        height: 180px;
+    }
+
+    .product-title {
+        font-size: 1rem;
+    }
+
+    .product-price {
+        font-size: 1rem;
+    }
+
+    .add-to-cart {
+        font-size: 0.9rem;
+    }
+
+    .filters {
+        flex-direction: column;
+    }
+
+    .filter-group {
+        width: 100%;
+    }
+
+    .quick-view-container {
+        flex-direction: column;
+    }
+
+    .quick-view-image {
+        margin-bottom: 20px;
+    }
+
+    .quick-view-actions {
+        flex-direction: column;
+    }
+
+    .quick-view-btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .compare-counter {
+        font-size: 0.7rem;
+        padding: 2px 6px;
+    }
+}
+.product-card, .category, .add-to-cart, .compare-btn {
+    cursor: pointer;
+}
+@media (max-width: 600px) {
+    .quick-view-content {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .quick-view-title {
+        font-size: 1.2rem;
+    }
+
+    .quick-view-description {
+        font-size: 0.9rem;
+    }
+
+    .notification {
+        font-size: 0.9rem;
+        padding: 12px 20px;
+    }
+}
+/* Dodatkowe style mobilne */
+@media (max-width: 480px) {
+    .product-card {
+        min-width: 0 !important;
+        height: auto;
+    }
+
+    .product-image-container {
+        height: 160px;
+    }
+
+    .product-title {
+        font-size: 0.9rem;
+    }
+
+    .product-price {
+        font-size: 0.9rem;
+    }
+
+    .add-to-cart {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+
+    .filter-options .filter-btn {
+        width: 100%;
+    }
+
+    .cart-item-img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .quantity-input {
+        width: 40px;
+        font-size: 0.8rem;
+    }
+
+    .cart-summary {
+        margin-top: 1rem;
+    }
+
+    .total-price {
+        font-size: 1.1rem;
+    }
+}
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -3071,6 +3221,7 @@ function updateCompareCounter() {
         updateCartCounter();
         document.getElementById('sort-none').classList.add('active');
         document.getElementById('season-none').classList.add('active');
+        document.addEventListener('touchstart', function () {}, true);
     </script>
 </body>
 </html>
